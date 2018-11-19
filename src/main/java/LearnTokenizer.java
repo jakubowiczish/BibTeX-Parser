@@ -7,7 +7,6 @@ public class LearnTokenizer {
     public static void main(String[] args) {
         BufferedReader bufferedReader = null;
 
-
         try {
             String line;
             bufferedReader = new BufferedReader(new FileReader("test.txt"));
