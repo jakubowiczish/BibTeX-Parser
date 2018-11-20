@@ -5,8 +5,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class BibParser {
-
-    int objectLastBracket(String parsed, int firstBracketIndex) {
+    /**
+     * @param parsed The whole (cleaned) string that will be modified
+     * @param firstBracketIndex index of the first bracket after '@'
+     * @return A index of last bracket - bracket that is ending a object
+     */
+    static int objectLastBracket(String parsed, int firstBracketIndex) {
         int counter = 1;
 
         int lastCheckedBracketIndex = firstBracketIndex;
@@ -25,8 +29,11 @@ public class BibParser {
         return lastCheckedBracketIndex;
     }
 
-
-    ArrayList<BibObject> parse(String filePath) {
+    /**
+     * @param filePath Path to file that will be parsed
+     * @return list of parsed Objects
+     */
+    static ArrayList<BibObject> parse(String filePath) {
         try {
             ArrayList<BibObject> objects = new ArrayList<>();
             BibBuilder[] bibBuilders = BibBuilders.getDefaultBuilders();

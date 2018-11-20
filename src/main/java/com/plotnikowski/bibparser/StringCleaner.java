@@ -4,6 +4,11 @@ import java.io.*;
 
 public class StringCleaner {
 
+    /**
+     * @param file a path to a file
+     * @return Cleaned up String -  for instance @comment, @preamble
+     * @throws IOException
+     */
     public static String removeLines(String file) throws IOException {
 
         BufferedReader bufferedReader = null;
@@ -46,16 +51,16 @@ public class StringCleaner {
                         }
                     }
             }
-            try (PrintWriter newWriter = new PrintWriter(FilePathBuilder.buildTemporaryFilePath(file))) {
-                newWriter.println(stringBuilder);
-            } catch (FileNotFoundException e1) {
-                e1.printStackTrace();
-            }
+//            try (PrintWriter newWriter = new PrintWriter(FilePathBuilder.buildTemporaryFilePath(file))) {
+//                newWriter.println(stringBuilder);
+//            } catch (FileNotFoundException e1) {
+//                e1.printStackTrace();
+//            }
 
             return stringBuilder.toString();
 
         } catch (IOException e) {
-            throw e;
+                throw e;
         } finally {
             try {
                 if (bufferedReader != null)

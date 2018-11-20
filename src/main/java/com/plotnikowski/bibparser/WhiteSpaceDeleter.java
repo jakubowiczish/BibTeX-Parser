@@ -1,6 +1,10 @@
 package com.plotnikowski.bibparser;
 
 public class WhiteSpaceDeleter {
+    /**
+     * @param toDelete String that has to be cleaned up
+     * @return cleaned up String
+     */
     public static String deleteWhiteSpaces(String toDelete) {
         StringBuilder stringBuilder = new StringBuilder();
         int quoteCounter = 0;
