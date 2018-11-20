@@ -26,7 +26,7 @@ The KEY field is here to override the KEY field in the journal being
 cross referenced (so is the NOTE field, in addition to its imparting
 information).
 
-@ARTICLE{"article-crossref",
+@comment{"article-crossref",
    crossref = "{WHOLE-JOURNAL}",
    key = "",
    author = "{L[eslie] A. Aamport}",
@@ -97,8 +97,6 @@ information).
 @BOOK{whole-collection,
    editor = "David J. Lipcoll and D. H. Lawrie and A. H. Sameh",
    title = "High Speed Computer and Algorithm Organization",
-   booktitle = "High Speed Computer and Algorithm Organization",
-   number = "23",
    series = "Fast Computers",
    publisher = "Academic Press",
    address = "New York",
@@ -139,12 +137,6 @@ information).
    note = "This is a full MISC entry",
 }
 
-@STRING{STOC-key = "OX{\singleletter{stoc}}"}
-
-@STRING{ACM = "The OX Association for Computing Machinery"}
-
-@STRING{STOC = " Symposium on the Theory of Computing"}
-
 @INPROCEEDINGS{inproceedings-full,
    author = "Alfred V. Oaho and Jeffrey D. Ullman and Mihalis Yannakakis",
    title = "On Notions of Information Transfer in {VLSI} Circuits",
@@ -159,19 +151,6 @@ information).
    organization = "ACM",
    publisher = "Academic Press",
    note = "This is a full INPROCEDINGS entry",
-}
-
-@PROCEEDINGS{proceedings-full,
-   editor = "Wizard V. Oz and Mihalis Yannakakis",
-   title = "Proc. Fifteenth Annual # STOC",
-   number = "17",
-   series = "All ACM Conferences",
-   month = "mar",
-   year = "1983",
-   address = "Boston",
-   organization = "ACM",
-   publisher = "Academic Press",
-   note = "This is a full PROCEEDINGS entry",
 }
 
 @PHDTHESIS{phdthesis-full,
@@ -189,7 +168,6 @@ information).
    author = "Tom Trrific",
    title = "AnSorting Algorithm",
    institution = "Fanstord University",
-   type = "Wishful Research Result",
    number = "7",
    address = "Computer Science Department Fanstord California",
    month = "oct",

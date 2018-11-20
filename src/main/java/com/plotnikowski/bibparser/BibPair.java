@@ -20,6 +20,6 @@ public class BibPair {
 
     @Override
     public String toString() {
-        return field + " " + value;
+        return field + " = " + value;
     }
 }

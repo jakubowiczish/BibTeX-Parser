@@ -2,10 +2,10 @@ package com.plotnikowski.bibparser;
 
 public class BibBuilder {
     private final String name;
-    private final String[] needed;
-    private final String[] optional;
+    private final TwoNames[] needed;
+    private final TwoNames[] optional;
 
-    BibBuilder(String name, String[] needed, String[] optional) {
+    BibBuilder(String name, TwoNames[] needed, TwoNames[] optional) {
         this.name = name;
         this.needed = needed;
         this.optional = optional;
@@ -15,29 +15,33 @@ public class BibBuilder {
         for (int i = 0; i < needed.length; i++) {
             boolean fieldFound = false;
             for (int j = 0; j < pairs.length; j++) {
-                if (pairs[j].getField().equals(needed[i])) {
+                if (needed[i].contains(pairs[j])) {
                     fieldFound = true;
                 }
             }
-            if (!fieldFound) throw new RuntimeException("Needed field not found");
+            if (!fieldFound) throw new RuntimeException("Needed field: " + needed[i] + " for type " + name + " not found");
         }
 
         for (int i = 0; i < pairs.length; i++) {
             boolean fieldFound = false;
             for (int j = 0; j < needed.length; j++) {
-                if (pairs[i].getField().equals(needed[j])) {
+                if (needed[j].contains(pairs[i])) {
                     fieldFound = true;
                 }
             }
             for (int j = 0; j < optional.length; j++) {
-                if (pairs[i].getField().equals(optional[j])) {
+                if (optional[j].contains(pairs[i])) {
                     fieldFound = true;
                 }
             }
-            if (!fieldFound) throw new RuntimeException("Too many optional fields");
+            if (!fieldFound) throw new RuntimeException("Wrong optional field: " + pairs[i] + " for type: " + name);
         }
 
         return new BibObject(name, quoteName, pairs);
+    }
+
+    public String getName() {
+        return this.name;
     }
 
 

@@ -11,7 +11,7 @@ public class App {
     public static void main(String[] args) {
         // Scanner scanner = new Scanner(System.in);
 
-        new BibParser().parse("test.txt");
+        System.out.println(new BibParser().parse("test.txt"));
 
     }
 

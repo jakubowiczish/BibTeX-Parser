@@ -9,14 +9,6 @@
    month = "jul",
    note = "This is a full ARTICLE entry",
 }
-@ARTICLE{"article-crossref",
-   crossref = "{WHOLE-JOURNAL}",
-   key = "",
-   author = "{L[eslie] A. Aamport}",
-   title = "{The Gnats and Gnus Document Preparation System}",
-   pages = "73+",
-   note = "This is a cross-referencing ARTICLE entry",
-}
 @INBOOK{inbook-full,
    author = "Donald E. Knuth",
    title = "Fundamental Algorithms",
@@ -73,8 +65,6 @@
 @BOOK{whole-collection,
    editor = "David J. Lipcoll and D. H. Lawrie and A. H. Sameh",
    title = "High Speed Computer and Algorithm Organization",
-   booktitle = "High Speed Computer and Algorithm Organization",
-   number = "23",
    series = "Fast Computers",
    publisher = "Academic Press",
    address = "New York",
@@ -111,9 +101,6 @@
    year = "1984",
    note = "This is a full MISC entry",
 }
-@STRING{STOC-key = "OX{\singleletter{stoc}}"}
-@STRING{ACM = "The OX Association for Computing Machinery"}
-@STRING{STOC = " Symposium on the Theory of Computing"}
 @INPROCEEDINGS{inproceedings-full,
    author = "Alfred V. Oaho and Jeffrey D. Ullman and Mihalis Yannakakis",
    title = "On Notions of Information Transfer in {VLSI} Circuits",
@@ -129,18 +116,6 @@
    publisher = "Academic Press",
    note = "This is a full INPROCEDINGS entry",
 }
-@PROCEEDINGS{proceedings-full,
-   editor = "Wizard V. Oz and Mihalis Yannakakis",
-   title = "Proc. Fifteenth Annual # STOC",
-   number = "17",
-   series = "All ACM Conferences",
-   month = "mar",
-   year = "1983",
-   address = "Boston",
-   organization = "ACM",
-   publisher = "Academic Press",
-   note = "This is a full PROCEEDINGS entry",
-}
 @PHDTHESIS{phdthesis-full,
    author = "F. Phidias Phony-Baloney",
    title = "Fighting Fire with Fire: Festooning {F}rench Phrases",
@@ -155,7 +130,6 @@
    author = "Tom Trrific",
    title = "AnSorting Algorithm",
    institution = "Fanstord University",
-   type = "Wishful Research Result",
    number = "7",
    address = "Computer Science Department Fanstord California",
    month = "oct",

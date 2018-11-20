@@ -1,5 +1,7 @@
 package com.plotnikowski.bibparser;
 
+import java.util.Arrays;
+
 public class BibObject {
     private String name;
     private String quoteKey;
@@ -10,5 +12,14 @@ public class BibObject {
         this.name = name;
         this.quoteKey = quoteKey;
         this.bibPair = bibPair;
+    }
+
+    @Override
+    public String toString() {
+        return "BibObject{" +
+                "name='" + name + '\'' + '\n' +
+                ", quoteKey='" + quoteKey + '\'' + '\n' +
+                ", bibPair=" + Arrays.toString(bibPair) + '\n' +
+                '}';
     }
 }
