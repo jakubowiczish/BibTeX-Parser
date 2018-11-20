@@ -1,5 +1,9 @@
+package com.plotnikowski.bibparser;
+
 public class BibObject {
     private String name;
     private String quoteKey;
-    BibPair bibPair;
+    private BibPair[] bibPair;
+
+
 }

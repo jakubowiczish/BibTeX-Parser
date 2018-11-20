@@ -1,15 +1,3 @@
-% Copyright (C) 1988, 2010 Oren Patashnik.
-% Unlimited copying and redistribution of this file are permitted if it
-% is unmodified.  Modifications (and their redistribution) are also
-% permitted, as long as the resulting file is renamed.
-
-@preamble{ "\newcommand{\noopsort}[1]{} "
-        # "\newcommand{\printfirst}[2]{#1} "
-        # "\newcommand{\singleletter}[1]{#1} "
-        # "\newcommand{\switchargs}[2]{#2#1} " }
-
-
-
 @ARTICLE{article-full,
    author = "{L[eslie] A. Aamport}",
    title = "{The Gnats and Gnus Document Preparation System}",
@@ -21,11 +9,6 @@
    month = "jul",
    note = "This is a full ARTICLE entry",
 }
-
-The KEY field is here to override the KEY field in the journal being
-cross referenced (so is the NOTE field, in addition to its imparting
-information).
-
 @ARTICLE{"article-crossref",
    crossref = "{WHOLE-JOURNAL}",
    key = "",
@@ -34,8 +17,6 @@ information).
    pages = "73+",
    note = "This is a cross-referencing ARTICLE entry",
 }
-
-
 @INBOOK{inbook-full,
    author = "Donald E. Knuth",
    title = "Fundamental Algorithms",
@@ -51,8 +32,6 @@ information).
    pages = "10 119",
    note = "This is a full INBOOK entry",
 }
-
-
 @BOOK{book-full,
    author = "Donald E. Knuth",
    title = "Seminumerical Algorithms",
@@ -65,7 +44,6 @@ information).
    year = "{\noopsort{1973c}}1981",
    note = "This is a full BOOK entry",
 }
-
 @BOOKLET{booklet-full,
    author = "Jill C. Knvth",
    title = "The Programming of Computer Art",
@@ -75,7 +53,6 @@ information).
    year = "1988",
    note = "This is a full BOOKLET entry",
 }
-
 @INCOLLECTION{incollection-full,
    author = "Daniel D. Lincoll",
    title = "Semigroups of Recurrences",
@@ -93,7 +70,6 @@ information).
    year = "1977",
    note = "This is a full INCOLLECTION entry",
 }
-
 @BOOK{whole-collection,
    editor = "David J. Lipcoll and D. H. Lawrie and A. H. Sameh",
    title = "High Speed Computer and Algorithm Organization",
@@ -107,7 +83,6 @@ information).
    year = "1977",
    note = "This is a cross-referenced BOOK (collection) entry",
 }
-
 @MANUAL{manual-full,
    author = "Larry Manmaker",
    title = "The Definitive Computer Manual",
@@ -118,7 +93,6 @@ information).
    year = "1986",
    note = "This is a full MANUAL entry",
 }
-
 @MASTERSTHESIS{mastersthesis-full,
    author = "douard Masterly",
    title = "Mastering Thesis Writing",
@@ -129,7 +103,6 @@ information).
    year = "1988",
    note = "This is a full MASTERSTHESIS entry",
 }
-
 @MISC{misc-full,
    author = "Joe-Bob Missilany",
    title = "Handing out random pamphlets in airports",
@@ -138,13 +111,9 @@ information).
    year = "1984",
    note = "This is a full MISC entry",
 }
-
 @STRING{STOC-key = "OX{\singleletter{stoc}}"}
-
 @STRING{ACM = "The OX Association for Computing Machinery"}
-
 @STRING{STOC = " Symposium on the Theory of Computing"}
-
 @INPROCEEDINGS{inproceedings-full,
    author = "Alfred V. Oaho and Jeffrey D. Ullman and Mihalis Yannakakis",
    title = "On Notions of Information Transfer in {VLSI} Circuits",
@@ -160,7 +129,6 @@ information).
    publisher = "Academic Press",
    note = "This is a full INPROCEDINGS entry",
 }
-
 @PROCEEDINGS{proceedings-full,
    editor = "Wizard V. Oz and Mihalis Yannakakis",
    title = "Proc. Fifteenth Annual # STOC",
@@ -173,7 +141,6 @@ information).
    publisher = "Academic Press",
    note = "This is a full PROCEEDINGS entry",
 }
-
 @PHDTHESIS{phdthesis-full,
    author = "F. Phidias Phony-Baloney",
    title = "Fighting Fire with Fire: Festooning {F}rench Phrases",
@@ -184,7 +151,6 @@ information).
    year = "1988",
    note = "This is a full PHDTHESIS entry",
 }
-
 @TECHREPORT{techreport-full,
    author = "Tom Trrific",
    title = "AnSorting Algorithm",
@@ -196,15 +162,14 @@ information).
    year = "1988",
    note = "This is a full TECHREPORT entry",
 }
-
 @UNPUBLISHED{unpublished-full,
    author = "Ulrich {{U}}nderwood and Ned {\~N}et and Paul {\={P}}ot",
    title = "Lower Bounds for Wishful Research Results",
    year = "1988",
    note = "Talk at Fanstord University (this is a full UNPUBLISHED entry)",
 }
-
 @MISC{random-note-crossref,
    key = "{Volume-2}",
    note = "Volume~2 is listed under Knuth \cite{book-full}"
 }
+

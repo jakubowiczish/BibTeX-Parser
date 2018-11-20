@@ -1,3 +1,5 @@
+package com.plotnikowski.bibparser;
+
 public class BibPair {
     private String field;
     private String value;
@@ -14,5 +16,10 @@ public class BibPair {
 
     public String getValue() {
         return value;
+    }
+
+    @Override
+    public String toString() {
+        return field + " " + value;
     }
 }

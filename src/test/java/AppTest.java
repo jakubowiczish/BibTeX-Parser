@@ -1,3 +1,4 @@
+import com.plotnikowski.bibparser.App;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

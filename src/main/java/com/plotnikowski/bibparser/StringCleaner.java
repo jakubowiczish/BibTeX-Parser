@@ -1,3 +1,5 @@
+package com.plotnikowski.bibparser;
+
 import java.io.*;
 
 public class StringCleaner {
