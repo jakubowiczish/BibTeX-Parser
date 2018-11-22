@@ -1,6 +1,7 @@
 package com.plotnikowski.bibparser;
 
 import java.util.Arrays;
+import java.util.Map;
 
 /**
  * Class representing BibObject
@@ -10,13 +11,13 @@ import java.util.Arrays;
 public class BibObject {
     private String name;
     private String quoteKey;
-    private BibPair[] bibPair;
+    private BibPair[] bibPairs;
 
 
     public BibObject(String name, String quoteKey, BibPair[] bibPair) {
         this.name = name;
         this.quoteKey = quoteKey;
-        this.bibPair = bibPair;
+        this.bibPairs = bibPair;
     }
 
     @Override
@@ -24,7 +25,15 @@ public class BibObject {
         return "BibObject{" +
                 "name='" + name + '\'' + '\n' +
                 ", quoteKey='" + quoteKey + '\'' + '\n' +
-                ", bibPair=" + Arrays.toString(bibPair) + '\n' +
+                ", bibPair=" + Arrays.toString(bibPairs) + '\n' +
                 '}';
+    }
+
+    public void handleStringMap(Map<String, String> stringMap) {
+        for(Map.Entry<String, String> entry : stringMap.entrySet()) {
+            for (BibPair bibPair : bibPairs) {
+                bibPair.handleString(entry);
+            }
+        }
     }
 }

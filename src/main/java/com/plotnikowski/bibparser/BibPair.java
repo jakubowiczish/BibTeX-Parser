@@ -1,5 +1,7 @@
 package com.plotnikowski.bibparser;
 
+import java.util.Map;
+
 /**
  * Class used to create pair out of two Strings
  */
@@ -24,5 +26,11 @@ public class BibPair {
     @Override
     public String toString() {
         return field + " = " + value;
+    }
+
+    public void handleString(Map.Entry<String, String> entry) {
+        if (getValue().contains(entry.getKey())) {
+            value = getValue().replaceAll(entry.getKey(), entry.getValue());
+        }
     }
 }

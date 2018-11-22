@@ -17,6 +17,14 @@ public class App {
         System.out.println(document);
 
 
+        try {
+            String result = StringCleaner.removeLines(filePath);
+            String cleaned = WhiteSpaceDeleter.deleteWhiteSpaces(result);
+            //System.out.println(cleaned);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         // checking
     }

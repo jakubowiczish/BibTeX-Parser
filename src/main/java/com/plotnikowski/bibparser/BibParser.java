@@ -2,6 +2,8 @@ package com.plotnikowski.bibparser;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Class used to parse bibtex file content into object representation
@@ -37,6 +39,7 @@ public class BibParser {
      */
     static BibDocument parse(String filePath) {
         try {
+            Map<String, String> stringMap = new HashMap<>();
             ArrayList<BibObject> objects = new ArrayList<>();
             BibDocument bibDocument = new BibDocument(objects);
 
@@ -49,50 +52,58 @@ public class BibParser {
             int lastBracketIndex = 0;
             int lastAtIndex = parsed.indexOf('@');
 
-
-//            System.out.println(parsed.indexOf('@'));
-//            System.out.println(parsed.indexOf('@', parsed.length() - 1));
-
             while (lastAtIndex != -1) {
                 firstBracketIndex = parsed.indexOf('{', lastAtIndex);
                 lastBracketIndex = objectLastBracket(parsed, firstBracketIndex);
 
                 String name = parsed.substring(lastAtIndex + 1, firstBracketIndex);
                 String[] attributes = parsed.substring(firstBracketIndex + 1, lastBracketIndex).split(",");
-                String quoteName = attributes[0];
 
-                BibPair[] pairs = new BibPair[attributes.length - 1];
+                if(!handleString(stringMap, name, attributes)) {
+                    String quoteName = attributes[0];
 
-                for (int i = 0; i < pairs.length; i++) {
-                    String[] pair = attributes[i + 1].split("=");
-                    // System.out.println(attributes[i+1]);
-                    pairs[i] = new BibPair(pair[0], pair[1].substring(1, pair[1].length() - 1));
-                }
+                    BibPair[] pairs = new BibPair[attributes.length - 1];
 
-                boolean found = false;
-                for (BibBuilder bibBuilder : bibBuilders) {
-                    if (bibBuilder.getName().equals(name)) {
-                        found = true;
-                        objects.add(bibBuilder.build(quoteName, pairs));
-                        break;
+                    for (int i = 0; i < pairs.length; i++) {
+                        String[] pair = attributes[i + 1].split("=");
+                        pairs[i] = new BibPair(pair[0], pair[1].substring(1, pair[1].length() - 1));
+                    }
+
+                    boolean found = false;
+                    for (BibBuilder bibBuilder : bibBuilders) {
+                        if (bibBuilder.getName().equals(name)) {
+                            found = true;
+                            objects.add(bibBuilder.build(quoteName, pairs));
+                            break;
+                        }
+                    }
+
+                    if (!found) {
+                        throw new IllegalArgumentException("Cannot parse field with " + name + " name");
                     }
                 }
-
-                if (!found) {
-                    throw new IllegalArgumentException("Cannot parse field with " + name + " name");
-                }
-
-                // System.out.println(name + " " + Arrays.toString(pairs));
                 lastAtIndex = parsed.indexOf('@', lastAtIndex + 1);
-                // System.out.println(lastAtIndex);
-
             }
+            for(BibObject bibObject : objects) {
+                bibObject.handleStringMap(stringMap);
+            }
+
             return bibDocument;
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return null;
+    }
+
+    private static boolean handleString(Map<String, String> stringMap, String name, String[] attributes) {
+        if(name.equals("STRING")) {
+            for(String attribute : attributes) {
+                String[] pair = attribute.split("=");
+                stringMap.put(pair[0], pair[1]);
+            }
+            return true;
+        }
+        return false;
     }
 }
 
