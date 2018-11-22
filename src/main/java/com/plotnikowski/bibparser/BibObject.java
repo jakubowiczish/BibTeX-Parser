@@ -2,6 +2,11 @@ package com.plotnikowski.bibparser;
 
 import java.util.Arrays;
 
+/**
+ * Class representing BibObject
+ * used to store the name of object, quoteKey and
+ * name of a field with its value
+ */
 public class BibObject {
     private String name;
     private String quoteKey;

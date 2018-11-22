@@ -2,15 +2,17 @@ package com.plotnikowski.bibparser;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
+/**
+ * Class used to parse bibtex file content into object representation
+ */
 public class BibParser {
     /**
-     * @param parsed The whole (cleaned) string that will be modified
+     * @param parsed            The whole (cleaned) string that will be modified
      * @param firstBracketIndex index of the first bracket after '@'
      * @return A index of last bracket - bracket that is ending a object
      */
-    static int objectLastBracket(String parsed, int firstBracketIndex) {
+    private static int objectLastBracket(String parsed, int firstBracketIndex) {
         int counter = 1;
 
         int lastCheckedBracketIndex = firstBracketIndex;
@@ -33,9 +35,11 @@ public class BibParser {
      * @param filePath Path to file that will be parsed
      * @return list of parsed Objects
      */
-    static ArrayList<BibObject> parse(String filePath) {
+    static BibDocument parse(String filePath) {
         try {
             ArrayList<BibObject> objects = new ArrayList<>();
+            BibDocument bibDocument = new BibDocument(objects);
+
             BibBuilder[] bibBuilders = BibBuilders.getDefaultBuilders();
 
             String toParse = StringCleaner.removeLines(filePath);
@@ -51,9 +55,7 @@ public class BibParser {
 
             while (lastAtIndex != -1) {
                 firstBracketIndex = parsed.indexOf('{', lastAtIndex);
-                // System.out.println("First: " + firstBracketIndex + " Last: " + lastBracketIndex);
                 lastBracketIndex = objectLastBracket(parsed, firstBracketIndex);
-
 
                 String name = parsed.substring(lastAtIndex + 1, firstBracketIndex);
                 String[] attributes = parsed.substring(firstBracketIndex + 1, lastBracketIndex).split(",");
@@ -85,8 +87,7 @@ public class BibParser {
                 // System.out.println(lastAtIndex);
 
             }
-            return objects;
-            // System.out.println("elo");
+            return bibDocument;
         } catch (IOException e) {
             e.printStackTrace();
         }

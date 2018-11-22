@@ -1,5 +1,8 @@
 package com.plotnikowski.bibparser;
 
+/**
+ * Class used to create pair out of two Strings
+ */
 public class BibPair {
     private String field;
     private String value;

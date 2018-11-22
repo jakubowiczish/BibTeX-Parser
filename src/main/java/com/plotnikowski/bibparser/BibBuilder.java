@@ -1,5 +1,8 @@
 package com.plotnikowski.bibparser;
 
+/**
+ * Class used to build a BibObject after verification of needed and optional fields
+ */
 public class BibBuilder {
     private final String name;
     private final TwoNames[] needed;
@@ -11,6 +14,13 @@ public class BibBuilder {
         this.optional = optional;
     }
 
+    /**
+     * Function that builds an object after checking whether arguments are valid
+     *
+     * @param quoteName quoteName needed to create an Object
+     * @param pairs Array made of BibPair pairs
+     * @return new Object if it is possible
+     */
     BibObject build(String quoteName, BibPair[] pairs) {
         for (int i = 0; i < needed.length; i++) {
             boolean fieldFound = false;
@@ -43,11 +53,4 @@ public class BibBuilder {
     public String getName() {
         return this.name;
     }
-
-
-//    com.plotnikowski.bibparser.BibObject build(String quoteKey, com.plotnikowski.bibparser.BibPair[] pairs){
-//
-//    }
-
-
 }

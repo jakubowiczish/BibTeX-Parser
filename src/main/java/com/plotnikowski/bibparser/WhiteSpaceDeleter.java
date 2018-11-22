@@ -1,5 +1,8 @@
 package com.plotnikowski.bibparser;
 
+/**
+ * Class used to delete redundant whitespace characters
+ */
 public class WhiteSpaceDeleter {
     /**
      * @param toDelete String that has to be cleaned up

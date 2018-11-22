@@ -2,11 +2,14 @@ package com.plotnikowski.bibparser;
 
 import java.io.*;
 
+/**
+ * Class used to clean given file up - delete not needed fields
+ */
 public class StringCleaner {
 
     /**
      * @param file a path to a file
-     * @return Cleaned up String -  for instance @comment, @preamble
+     * @return Cleaned up String - deleted not needed fields for instance @comment, @preamble and others
      * @throws IOException
      */
     public static String removeLines(String file) throws IOException {

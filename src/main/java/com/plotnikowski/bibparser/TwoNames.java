@@ -1,7 +1,8 @@
 package com.plotnikowski.bibparser;
 
-import java.util.Arrays;
-
+/**
+ * Class used to handle situations when we can have two possible names for one field
+ */
 public class TwoNames {
     private String name1;
     private String name2;
@@ -14,6 +15,7 @@ public class TwoNames {
     TwoNames(String name){
         this(name, null);
     }
+
 
     public static TwoNames[] createArray(String string) {
         String[] split = string.split(", ");

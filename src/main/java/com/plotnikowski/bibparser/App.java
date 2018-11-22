@@ -1,7 +1,7 @@
 package com.plotnikowski.bibparser;
 
 import java.io.IOException;
-import java.util.Scanner;
+import java.util.*;
 
 public class App {
     public String getGreeting() {
@@ -9,10 +9,12 @@ public class App {
     }
 
     public static void main(String[] args) {
+        String filePath = "test.bib";
         // Scanner scanner = new Scanner(System.in);
 
-        System.out.println(BibParser.parse("test.txt"));
-
+        BibDocument document = BibParser.parse(filePath);
+        // System.out.println(Arrays.toString(listOfOBjects.toArray()));
+        System.out.println(document);
     }
 
 }

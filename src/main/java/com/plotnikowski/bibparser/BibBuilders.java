@@ -1,8 +1,14 @@
 package com.plotnikowski.bibparser;
 
-import java.awt.image.TileObserver;
-
+/**
+ * Class that contains pattern for every type of record
+ */
 public class BibBuilders {
+    /**
+     *
+     *
+     * @return Array that contains builders for all types of record
+     */
     public static BibBuilder[] getDefaultBuilders() {
         return new BibBuilder[]{
                 new BibBuilder("ARTICLE", TwoNames.createArray("author, title, journal, year"),

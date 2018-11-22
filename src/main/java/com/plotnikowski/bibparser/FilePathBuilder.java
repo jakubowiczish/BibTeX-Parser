@@ -2,10 +2,12 @@ package com.plotnikowski.bibparser;
 
 import java.io.File;
 
-
+/**
+ * Class used to build a new path to a file if file is generated (redundant for now on)
+ */
 public class FilePathBuilder {
     /**
-     * Functions adds .tmp extension to a filename
+     * Function adds .tmp extension to a filename
      * @param path File path
      * @return modified file path
      */
