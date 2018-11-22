@@ -15,6 +15,10 @@ public class App {
         BibDocument document = BibParser.parse(filePath);
         // System.out.println(Arrays.toString(listOfOBjects.toArray()));
         System.out.println(document);
+
+
+
+        // checking
     }
 
 }
