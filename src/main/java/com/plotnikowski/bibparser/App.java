@@ -17,7 +17,9 @@ public class App {
         // System.out.println(document);
 //        String string = String.format("%17s| ", "");
 //        System.out.println(string);
-        BibPrinter.printAll(document);
+        if (document != null) {
+            BibPrinter.printAll(document);
+        }
 
         try {
             String result = StringCleaner.removeLines(filePath);
