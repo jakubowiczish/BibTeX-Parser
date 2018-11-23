@@ -14,8 +14,10 @@ public class App {
 
         BibDocument document = BibParser.parse(filePath);
         // System.out.println(Arrays.toString(listOfOBjects.toArray()));
-        System.out.println(document);
-
+        // System.out.println(document);
+//        String string = String.format("%17s| ", "");
+//        System.out.println(string);
+        BibPrinter.printAll(document);
 
         try {
             String result = StringCleaner.removeLines(filePath);

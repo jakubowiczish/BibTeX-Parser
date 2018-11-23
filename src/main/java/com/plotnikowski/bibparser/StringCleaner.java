@@ -31,8 +31,6 @@ public class StringCleaner {
             boolean countBrackets = false;
 
             while ((line = bufferedReader.readLine()) != null) {
-                // System.out.println(line);
-
                 if (!line.isEmpty()) {
                     if (line.charAt(0) == '@' || counter != 0) {
                         if (line.startsWith("@preamble") || line.startsWith("@comment")) {

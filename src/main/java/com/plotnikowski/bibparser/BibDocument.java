@@ -10,8 +10,19 @@ public class BibDocument {
     }
 
 
+    /**
+     * Show all publications
+     *
+     * @return
+     */
     @Override
     public String toString() {
-        return objects + "";
+        return "BibDocument{" +
+                "objects=" + objects +
+                '}';
+    }
+
+    public ArrayList<BibObject> getObjects() {
+        return objects;
     }
 }

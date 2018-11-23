@@ -23,9 +23,10 @@ public class BibPair {
         return value;
     }
 
+
     @Override
     public String toString() {
-        return field + " = " + value;
+        return field + " = " + value + '\n';
     }
 
     public void handleString(Map.Entry<String, String> entry) {
