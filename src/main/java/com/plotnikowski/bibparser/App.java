@@ -17,17 +17,20 @@ public class App {
         // System.out.println(document);
 //        String string = String.format("%17s| ", "");
 //        System.out.println(string);
+        ArrayList<String> authors = new ArrayList<String>();
+        authors.add("Donald E. Knuth");
         if (document != null) {
-            BibPrinter.printAll(document);
+//            BibSeeker.printSpecifiedPublication(document, "BOOK");
+            BibSeeker.printPublicationOfAuthors(document, authors);
         }
 
-        try {
-            String result = StringCleaner.removeLines(filePath);
-            String cleaned = WhiteSpaceDeleter.deleteWhiteSpaces(result);
-            //System.out.println(cleaned);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            String result = StringCleaner.removeLines(filePath);
+//            String cleaned = WhiteSpaceDeleter.deleteWhiteSpaces(result);
+//            //System.out.println(cleaned);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
 
         // checking
