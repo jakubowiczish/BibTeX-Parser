@@ -32,8 +32,9 @@ public class App {
 
 
         if (document != null) {
+            BibPrinter.printAll(document);
 //            BibSeeker.printSpecifiedPublication(document, "BOOK");
-            BibSeeker.printPublicationOfAuthors(document, authors);
+//            BibSeeker.printPublicationOfAuthors(document, authors);
         }
 
 //        try {

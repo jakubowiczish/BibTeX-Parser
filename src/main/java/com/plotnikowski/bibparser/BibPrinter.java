@@ -63,13 +63,35 @@ public class BibPrinter {
                 int lengthF = maxLeftLength + 1 - fieldLength;
 
                 String alignmentV = fixedLengthString(" ", lengthV) + " |";
-                String alignmentL = fixedLengthString(" ", lengthF);
+                String alignmentF = fixedLengthString(" ", lengthF);
 
+                String realField = "| " + field + alignmentF;
                 String realValue = "| " + value + alignmentV;
-                String realField = "| " + field + alignmentL;
 
-                builder.append(horizontalLine).append('\n');
-                builder.append(realField).append(realValue).append('\n');
+                if (field.equals("author") || field.equals("editor")) {
+                    String[] authors = BibSeeker.splitAuthors(value);
+
+                    int lengthAdd = maxRightLength + 4;
+                    String alignmentE = fixedLengthString(" ", lengthAdd) + "|";
+
+                    builder.append(horizontalLine).append('\n');
+                    builder.append(realField).append(alignmentE).append('\n');
+                    int length = realField.length();
+
+                    String gap = "|" + fixedLengthString(" ", length);
+
+                    for (String author : authors) {
+                        int lengthA = maxRightLength + 1 - author.length();
+                        String alignmentA = fixedLengthString(" ", lengthA) + "|";
+
+                        String realAuthor = "- " + author + alignmentA;
+                        builder.append(gap).append(realAuthor).append('\n');
+                    }
+                } else {
+                    builder.append(horizontalLine).append('\n');
+                    builder.append(realField).append(realValue).append('\n');
+                }
+
             }
 
             builder.append(horizontalLine).append('\n');

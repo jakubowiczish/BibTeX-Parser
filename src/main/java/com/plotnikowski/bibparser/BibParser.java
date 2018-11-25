@@ -84,6 +84,7 @@ public class BibParser {
                 }
                 lastAtIndex = parsed.indexOf('@', lastAtIndex + 1);
             }
+            
             for(BibObject bibObject : objects) {
                 bibObject.handleStringMap(stringMap);
             }
