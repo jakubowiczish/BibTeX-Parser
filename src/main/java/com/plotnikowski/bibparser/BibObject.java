@@ -14,13 +14,11 @@ public class BibObject {
     private String quoteKey;
     private BibPair[] bibPairs;
 
-
     public BibObject(String name, String quoteKey, BibPair[] bibPair) {
         this.name = name;
         this.quoteKey = quoteKey;
         this.bibPairs = bibPair;
     }
-
 
     public int getMaxFieldLength() {
         int maxFieldLength = 0;
@@ -62,7 +60,6 @@ public class BibObject {
             }
         }
     }
-
 
     public String getName() {
         return name;

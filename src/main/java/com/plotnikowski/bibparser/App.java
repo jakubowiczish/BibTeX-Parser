@@ -17,8 +17,20 @@ public class App {
         // System.out.println(document);
 //        String string = String.format("%17s| ", "");
 //        System.out.println(string);
-        ArrayList<String> authors = new ArrayList<String>();
-        authors.add("Donald E. Knuth");
+
+
+//        ArrayList<String> authors = new ArrayList<String>();
+//        authors.add("Donald E. Knuth");
+//        authors.add("D. H. Lawrie");
+//        authors.add("A. H. Sameh");
+//        authors.add("David J. Lipcoll");
+
+        String auth = "Ulrich Underwood | Ned Net | Paul Pot";
+        String[] authors = BibSeeker.splitAuthors(auth);
+
+//        System.out.println(Arrays.toString(aut));
+
+
         if (document != null) {
 //            BibSeeker.printSpecifiedPublication(document, "BOOK");
             BibSeeker.printPublicationOfAuthors(document, authors);
