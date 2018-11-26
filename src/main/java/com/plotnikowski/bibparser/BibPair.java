@@ -29,6 +29,10 @@ public class BibPair {
         return field + " = " + value + '\n';
     }
 
+    /**
+     *
+     * @param entry
+     */
     public void handleString(Map.Entry<String, String> entry) {
         if (getValue().contains(entry.getKey())) {
             value = getValue().replaceAll(entry.getKey(), entry.getValue());

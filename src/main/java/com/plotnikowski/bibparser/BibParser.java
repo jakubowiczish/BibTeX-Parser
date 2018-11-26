@@ -45,8 +45,8 @@ public class BibParser {
 
             BibBuilder[] bibBuilders = BibBuilders.getDefaultBuilders();
 
-            String toParse = StringCleaner.removeLines(filePath);
-            String parsed = WhiteSpaceDeleter.deleteWhiteSpaces(toParse);
+            String toParse = BibStringCleaner.removeRedundantLines(filePath);
+            String parsed = BibStringCleaner.deleteWhiteSpaces(toParse);
 
             int firstBracketIndex = 0;
             int lastBracketIndex = 0;
@@ -59,7 +59,7 @@ public class BibParser {
                 String name = parsed.substring(lastAtIndex + 1, firstBracketIndex);
                 String[] attributes = parsed.substring(firstBracketIndex + 1, lastBracketIndex).split(",");
 
-                if(!handleString(stringMap, name, attributes)) {
+                if (!handleString(stringMap, name, attributes)) {
                     String quoteName = attributes[0];
 
                     BibPair[] pairs = new BibPair[attributes.length - 1];
@@ -84,8 +84,8 @@ public class BibParser {
                 }
                 lastAtIndex = parsed.indexOf('@', lastAtIndex + 1);
             }
-            
-            for(BibObject bibObject : objects) {
+
+            for (BibObject bibObject : objects) {
                 bibObject.handleStringMap(stringMap);
             }
 
@@ -97,8 +97,8 @@ public class BibParser {
     }
 
     private static boolean handleString(Map<String, String> stringMap, String name, String[] attributes) {
-        if(name.equals("STRING")) {
-            for(String attribute : attributes) {
+        if (name.equals("STRING")) {
+            for (String attribute : attributes) {
                 String[] pair = attribute.split("=");
                 stringMap.put(pair[0], pair[1]);
             }

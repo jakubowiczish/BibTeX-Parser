@@ -5,10 +5,10 @@ package com.plotnikowski.bibparser;
  */
 public class BibBuilder {
     private final String name;
-    private final TwoNames[] needed;
-    private final TwoNames[] optional;
+    private final BibFieldNames[] needed;
+    private final BibFieldNames[] optional;
 
-    BibBuilder(String name, TwoNames[] needed, TwoNames[] optional) {
+    BibBuilder(String name, BibFieldNames[] needed, BibFieldNames[] optional) {
         this.name = name;
         this.needed = needed;
         this.optional = optional;

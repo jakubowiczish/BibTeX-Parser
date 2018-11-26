@@ -3,32 +3,39 @@ package com.plotnikowski.bibparser;
 /**
  * Class used to handle situations when we can have two possible names for one field
  */
-public class TwoNames {
+public class BibFieldNames {
     private String name1;
     private String name2;
 
-    TwoNames(String name1, String name2){
+    BibFieldNames(String name1, String name2){
         this.name1 = name1;
         this.name2 = name2;
     }
 
-    TwoNames(String name){
+    BibFieldNames(String name){
         this(name, null);
     }
 
 
-    public static TwoNames[] createArray(String string) {
+    /**
+     * Deals with situation, when fields' names are not exactly specified e.g.
+     * when given publication is book, one of needed fields' names is author or editor
+     *
+     * @param string
+     * @return
+     */
+    public static BibFieldNames[] createArray(String string) {
         String[] split = string.split(", ");
-        TwoNames[] twoNames = new TwoNames[split.length];
+        BibFieldNames[] bibFieldNames = new BibFieldNames[split.length];
         for (int i = 0; i < split.length; i++) {
             if(split[i].contains("|")) {
                 String[] split2 = split[i].split("\\|");
-                twoNames[i] = new TwoNames(split2[0], split2[1]);
+                bibFieldNames[i] = new BibFieldNames(split2[0], split2[1]);
             } else {
-                twoNames[i] = new TwoNames(split[i]);
+                bibFieldNames[i] = new BibFieldNames(split[i]);
             }
         }
-        return twoNames;
+        return bibFieldNames;
     }
 
     public boolean contains(BibPair pair) {

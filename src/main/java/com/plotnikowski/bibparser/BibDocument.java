@@ -2,6 +2,9 @@ package com.plotnikowski.bibparser;
 
 import java.util.ArrayList;
 
+/**
+ * Class representing document
+ */
 public class BibDocument {
     private ArrayList<BibObject> objects;
 
@@ -9,12 +12,6 @@ public class BibDocument {
         this.objects = objects;
     }
 
-
-    /**
-     * Show all publications
-     *
-     * @return
-     */
     @Override
     public String toString() {
         return "BibDocument{" +

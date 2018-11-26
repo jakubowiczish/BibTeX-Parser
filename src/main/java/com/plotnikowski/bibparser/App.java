@@ -1,8 +1,5 @@
 package com.plotnikowski.bibparser;
 
-import java.io.IOException;
-import java.util.*;
-
 public class App {
     public String getGreeting() {
         return "Hello world.";
@@ -26,19 +23,21 @@ public class App {
 //        authors.add("David J. Lipcoll");
 
         String auth = "Ulrich Underwood | Ned Net | Paul Pot";
-        String[] authors = BibSeeker.splitAuthors(auth);
+        String[] authors = BibSeekerPrinter.splitAuthors(auth);
 
 //        System.out.println(Arrays.toString(aut));
 
+        BibPrinter printer = new BibPrinter(new BibWholeDocumentPrinter(), document);
+        BibPrinter printer2 = new BibPrinter(new BibSeekerPrinter(authors), document);
 
         if (document != null) {
-            BibPrinter.printAll(document);
-//            BibSeeker.printSpecifiedPublication(document, "BOOK");
-//            BibSeeker.printPublicationOfAuthors(document, authors);
+            printer2.print();
+//            BibSeekerPrinter.printSpecificPublication(document, "BOOK");
+//            BibSeekerPrinter.printPublicationOfSpecificAuthors(document, authors);
         }
 
 //        try {
-//            String result = StringCleaner.removeLines(filePath);
+//            String result = BibStringCleaner.removeRedundantLines(filePath);
 //            String cleaned = WhiteSpaceDeleter.deleteWhiteSpaces(result);
 //            //System.out.println(cleaned);
 //        } catch (IOException e) {
