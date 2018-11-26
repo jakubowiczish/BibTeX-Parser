@@ -7,45 +7,27 @@ public class App {
 
     public static void main(String[] args) {
         String filePath = "test.bib";
-        // Scanner scanner = new Scanner(System.in);
 
         BibDocument document = BibParser.parse(filePath);
-        // System.out.println(Arrays.toString(listOfOBjects.toArray()));
-        // System.out.println(document);
-//        String string = String.format("%17s| ", "");
-//        System.out.println(string);
 
+        String name = "BOOK";
 
-//        ArrayList<String> authors = new ArrayList<String>();
-//        authors.add("Donald E. Knuth");
-//        authors.add("D. H. Lawrie");
-//        authors.add("A. H. Sameh");
-//        authors.add("David J. Lipcoll");
+        String auth = "Donald E. Knuth";
+        String[] authors = BibUtils.splitAuthors(auth);
 
-        String auth = "Ulrich Underwood | Ned Net | Paul Pot";
-        String[] authors = BibSeekerPrinter.splitAuthors(auth);
+        // mozna wiele filtrow jednoczesnie
 
-//        System.out.println(Arrays.toString(aut));
-
-        BibPrinter printer = new BibPrinter(new BibWholeDocumentPrinter(), document);
-        BibPrinter printer2 = new BibPrinter(new BibSeekerPrinter(authors), document);
+        BibPrinter printer = new BibPrinter(new BibWholeDocumentPrinter(), BibFilter.filter(document, new BibAuthorFilter(authors), new BibNameFilter("INBOOK")));
+        BibPrinter printer2 = new BibPrinter(new BibWholeDocumentPrinter(), BibFilter.filter(document, new BibAuthorFilter(authors)));
+        BibPrinter printer3 = new BibPrinter(new BibWholeDocumentPrinter(), BibFilter.filter(document, new BibNameFilter(name)));
+        BibPrinter printerW = new BibPrinter(new BibWholeDocumentPrinter(), document);
 
         if (document != null) {
-            printer2.print();
-//            BibSeekerPrinter.printSpecificPublication(document, "BOOK");
-//            BibSeekerPrinter.printPublicationOfSpecificAuthors(document, authors);
+//            printer.print();
+//            printer2.print();
+//            printer3.print();
+            printerW.print();
         }
-
-//        try {
-//            String result = BibStringCleaner.removeRedundantLines(filePath);
-//            String cleaned = WhiteSpaceDeleter.deleteWhiteSpaces(result);
-//            //System.out.println(cleaned);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-
-        // checking
     }
 
 }

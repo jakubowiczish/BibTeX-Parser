@@ -16,7 +16,7 @@ public class BibWholeDocumentPrinter implements IPrint{
         int maxRightLength = 0;
         int maxLeftLength = 0;
 
-        for (BibObject object : document.getObjects()) {
+        for (BibObject object : document) {
             int fieldLength = object.getMaxFieldLength();
             int valueLength = object.getMaxValueLength();
 
@@ -34,7 +34,7 @@ public class BibWholeDocumentPrinter implements IPrint{
         String horizontalLine =  horizontalCharacter.repeat(horizontalLineLength);
 
         String verticalCharacter = "│";
-        for (BibObject object : document.getObjects()) {
+        for (BibObject object : document) {
 
             String nameOfPublication = object.getName();
             String key = object.getQuoteKey();
@@ -74,7 +74,7 @@ public class BibWholeDocumentPrinter implements IPrint{
                 String realValue = verticalCharacter + " " + value + alignmentV;
 
                 if (field.equals("author") || field.equals("editor")) {
-                    String[] authors = BibSeekerPrinter.splitAuthors(value);
+                    String[] authors = BibUtils.splitAuthors(value);
 
                     int lengthAdd = maxRightLength + 4;
                     String alignmentE = fixedLengthString(" ", lengthAdd) + verticalCharacter;
