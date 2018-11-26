@@ -54,6 +54,9 @@ public class BibSeeker {
 
     public static String[] splitAuthors(String authorField) {
         String[] authors = authorField.split("\\|");
+        for(int i = 0; i < authors.length; i++){
+            authors[i] = authors[i].trim();
+        }
         return authors;
     }
 }
