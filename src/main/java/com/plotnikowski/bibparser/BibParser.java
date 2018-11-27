@@ -1,6 +1,6 @@
 package com.plotnikowski.bibparser;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +37,7 @@ public class BibParser {
      * @param filePath Path to file that will be parsed
      * @return list of parsed Objects
      */
-    static BibDocument parse(String filePath) {
+    public static BibDocument parse(String filePath) {
         try {
             Map<String, String> stringMap = new HashMap<>();
             ArrayList<BibObject> objects = new ArrayList<>();
@@ -45,21 +45,21 @@ public class BibParser {
 
             BibBuilder[] bibBuilders = BibBuilders.getDefaultBuilders();
 
-            String toParse = BibStringCleaner.removeRedundantLines(filePath);
-            String parsed = BibStringCleaner.deleteWhiteSpaces(toParse);
+            String fileContent = BibParser.receiveFile(filePath);
+            String withoutWhiteSpaces = BibStringCleaner.deleteWhiteSpaces(fileContent);
 
             int firstBracketIndex = 0;
             int lastBracketIndex = 0;
-            int lastAtIndex = parsed.indexOf('@');
+            int lastAtIndex = withoutWhiteSpaces.indexOf('@');
 
             while (lastAtIndex != -1) {
-                firstBracketIndex = parsed.indexOf('{', lastAtIndex);
-                lastBracketIndex = objectLastBracket(parsed, firstBracketIndex);
+                firstBracketIndex = withoutWhiteSpaces.indexOf('{', lastAtIndex);
+                lastBracketIndex = objectLastBracket(withoutWhiteSpaces, firstBracketIndex);
 
-                String name = parsed.substring(lastAtIndex + 1, firstBracketIndex);
-                String[] attributes = parsed.substring(firstBracketIndex + 1, lastBracketIndex).split(",");
+                String entry = withoutWhiteSpaces.substring(lastAtIndex + 1, firstBracketIndex);
+                String[] attributes = withoutWhiteSpaces.substring(firstBracketIndex + 1, lastBracketIndex).split(",");
 
-                if (!handleString(stringMap, name, attributes)) {
+                if (!handleString(stringMap, entry, attributes) && !isEntryRedundant(entry)) {
                     String quoteName = attributes[0];
 
                     BibPair[] pairs = new BibPair[attributes.length - 1];
@@ -71,7 +71,7 @@ public class BibParser {
 
                     boolean found = false;
                     for (BibBuilder bibBuilder : bibBuilders) {
-                        if (bibBuilder.getName().equals(name)) {
+                        if (bibBuilder.getName().equals(entry)) {
                             found = true;
                             objects.add(bibBuilder.build(quoteName, pairs));
                             break;
@@ -79,10 +79,10 @@ public class BibParser {
                     }
 
                     if (!found) {
-                        throw new IllegalArgumentException("Cannot parse field with " + name + " name");
+                        throw new IllegalArgumentException("Cannot parse field with " + entry + " entry");
                     }
                 }
-                lastAtIndex = parsed.indexOf('@', lastAtIndex + 1);
+                lastAtIndex = withoutWhiteSpaces.indexOf('@', lastAtIndex + 1);
             }
 
             for (BibObject bibObject : objects) {
@@ -94,6 +94,49 @@ public class BibParser {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private static String receiveFile(String filePath) throws IOException {
+        BufferedReader bufferedReader = null;
+        try {
+            File inputFile = new File(filePath);
+
+            if (!inputFile.isFile()) {
+                throw new FileNotFoundException("Parameter is not a file");
+            }
+            bufferedReader = new BufferedReader(new FileReader(inputFile));
+
+            String line;
+            StringBuilder stringBuilder = new StringBuilder();
+
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line).append('\n');
+            }
+
+            return stringBuilder.toString();
+
+        } catch (IOException e) {
+            throw e;
+        } finally {
+            try {
+                if (bufferedReader != null)
+                    bufferedReader.close();
+
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    private static boolean isEntryRedundant(String entry){
+        String[] redundantEntries = new String[]{"preamble", "comment"};
+
+        for (String redundantEntry : redundantEntries){
+            if(entry.equals(redundantEntry)){
+                return true;
+            }
+        }
+        return false;
     }
 
     private static boolean handleString(Map<String, String> stringMap, String name, String[] attributes) {

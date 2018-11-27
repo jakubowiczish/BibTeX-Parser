@@ -1,5 +1,7 @@
 package com.plotnikowski.bibparser;
 
+import java.io.*;
+
 public class BibUtils {
     /**
      * Splits authors separated with '|' and returns array of authors
