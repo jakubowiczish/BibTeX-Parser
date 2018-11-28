@@ -16,7 +16,6 @@ public class BibFieldNames {
         this(name, null);
     }
 
-
     /**
      * Deals with situation, when fields' names are not exactly specified e.g.
      * when given publication is book, one of needed fields' names is author or editor

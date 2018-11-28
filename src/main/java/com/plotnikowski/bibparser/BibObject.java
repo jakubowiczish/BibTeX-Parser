@@ -3,6 +3,7 @@ package com.plotnikowski.bibparser;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Class representing BibObject
@@ -72,4 +73,15 @@ public class BibObject {
     public BibPair[] getBibPairs() {
         return bibPairs;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BibObject object = (BibObject) o;
+        return Objects.equals(name, object.name) &&
+                Objects.equals(quoteKey, object.quoteKey) &&
+                Arrays.equals(bibPairs, object.bibPairs);
+    }
+
 }

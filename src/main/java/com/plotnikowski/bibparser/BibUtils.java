@@ -10,7 +10,7 @@ public class BibUtils {
      * @return array of authors
      */
     public static String[] splitAuthors(String authorField) {
-        String[] authors = authorField.split("\\|");
+        String[] authors = authorField.split("and");
         for (int i = 0; i < authors.length; i++) {
             authors[i] = authors[i].trim();
         }

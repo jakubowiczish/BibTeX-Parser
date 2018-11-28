@@ -1,5 +1,8 @@
 package com.plotnikowski.bibparser;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 /**
  * Class used to build a BibObject after verification of needed and optional fields
  */
@@ -8,7 +11,7 @@ public class BibBuilder {
     private final BibFieldNames[] needed;
     private final BibFieldNames[] optional;
 
-    BibBuilder(String name, BibFieldNames[] needed, BibFieldNames[] optional) {
+    public BibBuilder(String name, BibFieldNames[] needed, BibFieldNames[] optional) {
         this.name = name;
         this.needed = needed;
         this.optional = optional;
@@ -21,7 +24,7 @@ public class BibBuilder {
      * @param pairs Array made of BibPair pairs
      * @return new Object if it is possible
      */
-    BibObject build(String quoteName, BibPair[] pairs) {
+    public BibObject build(String quoteName, BibPair[] pairs) {
         for (int i = 0; i < needed.length; i++) {
             boolean fieldFound = false;
             for (int j = 0; j < pairs.length; j++) {
@@ -53,4 +56,16 @@ public class BibBuilder {
     public String getName() {
         return this.name;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BibBuilder builder = (BibBuilder) o;
+        return Objects.equals(name, builder.name) &&
+                Arrays.equals(needed, builder.needed) &&
+                Arrays.equals(optional, builder.optional);
+    }
+
+
 }

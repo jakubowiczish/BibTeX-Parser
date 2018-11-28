@@ -66,6 +66,7 @@ public class BibParser {
 
                     for (int i = 0; i < pairs.length; i++) {
                         String[] pair = attributes[i + 1].split("=");
+
                         pairs[i] = new BibPair(pair[0], pair[1].substring(1, pair[1].length() - 1));
                     }
 
