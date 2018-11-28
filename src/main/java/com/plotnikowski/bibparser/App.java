@@ -17,16 +17,16 @@ public class App {
 
         // mozna wiele filtrow jednoczesnie
 
-        BibPrinter printer = new BibPrinter(new BibWholeDocumentPrinter(), BibFilter.filter(document, new BibAuthorFilter(authors), new BibNameFilter("INBOOK")));
+        BibPrinter printer = new BibPrinter(new BibWholeDocumentPrinter(), BibFilter.filter(document, new BibNameFilter("INPROCEEDINGS")));
         BibPrinter printer2 = new BibPrinter(new BibWholeDocumentPrinter(), BibFilter.filter(document, new BibAuthorFilter(authors)));
         BibPrinter printer3 = new BibPrinter(new BibWholeDocumentPrinter(), BibFilter.filter(document, new BibNameFilter(name)));
         BibPrinter printerW = new BibPrinter(new BibWholeDocumentPrinter(), document);
 
         if (document != null) {
-//            printer.print();
+            printer.print();
 //            printer2.print();
 //            printer3.print();
-            printerW.print();
+//            printerW.print();
         }
     }
 

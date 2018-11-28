@@ -1,6 +1,6 @@
 package com.plotnikowski.bibparser;
 
-public class BibWholeDocumentPrinter implements IPrint{
+public class BibWholeDocumentPrinter implements IPrint {
 
     private static String fixedLengthString(String string, int length) {
         return String.format("%" + length + "s", string);
@@ -31,7 +31,7 @@ public class BibWholeDocumentPrinter implements IPrint{
 
         int horizontalLineLength = maxLeftLength + maxRightLength + 8;
         String horizontalCharacter = "─";
-        String horizontalLine =  horizontalCharacter.repeat(horizontalLineLength);
+        String horizontalLine = horizontalCharacter.repeat(horizontalLineLength);
 
         String verticalCharacter = "│";
         for (BibObject object : document) {
@@ -76,6 +76,18 @@ public class BibWholeDocumentPrinter implements IPrint{
                 if (field.equals("author") || field.equals("editor")) {
                     String[] authors = BibUtils.splitAuthors(value);
 
+                    for (int i = 0; i < authors.length; i++) {
+                        String[] names;
+                        String resultName;
+                        if (authors[i].contains("|")) {
+                            names = authors[i].split("\\|");
+                            resultName = names[1] + " " + names[0];
+                        } else {
+                            resultName = authors[i];
+                        }
+                        authors[i] = resultName.trim();
+                    }
+
                     int lengthAdd = maxRightLength + 4;
                     String alignmentE = fixedLengthString(" ", lengthAdd) + verticalCharacter;
 
@@ -92,6 +104,7 @@ public class BibWholeDocumentPrinter implements IPrint{
                         String realAuthor = "- " + author + alignmentA;
                         builder.append(gap).append(realAuthor).append('\n');
                     }
+
                 } else {
                     builder.append(horizontalLine).append('\n');
                     builder.append(realField).append(realValue).append('\n');
