@@ -54,13 +54,6 @@ public class BibObject {
                 '}';
     }
 
-    public void handleStringMap(Map<String, String> stringMap) {
-        for (Map.Entry<String, String> entry : stringMap.entrySet()) {
-            for (BibPair bibPair : bibPairs) {
-                bibPair.handleString(entry);
-            }
-        }
-    }
 
     public String getName() {
         return name;

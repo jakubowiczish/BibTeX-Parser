@@ -66,7 +66,8 @@ public class BibParser {
 
                     for (int i = 0; i < pairs.length; i++) {
                         String[] pair = attributes[i + 1].split("=");
-                        pair[1] = BibParser.concatenate(pair[1], stringMap);
+                        pair[1] = BibParser.handleVariables(pair[1], stringMap);
+
                         pairs[i] = new BibPair(pair[0], pair[1]);
                     }
 
@@ -86,9 +87,7 @@ public class BibParser {
                 lastAtIndex = withoutWhiteSpaces.indexOf('@', lastAtIndex + 1);
             }
 
-            for (BibObject bibObject : objects) {
-                bibObject.handleStringMap(stringMap);
-            }
+
 
             return bibDocument;
         } catch (IOException e) {
@@ -155,34 +154,29 @@ public class BibParser {
     }
 
 
-    private static String concatenate(String line, Map<String, String> map) {
+    private static String handleVariables(String line, Map<String, String> map) {
         String[] variables;
         StringBuilder newLine = new StringBuilder();
-        if (line.contains("#")) {
-            variables = line.split("#");
-            for (String variable : variables) {
-                if (!variable.contains("\"")) {
-                    for (Map.Entry<String, String> entry : map.entrySet()) {
-                        if (entry.getKey().equals(variable)) {
-                            newLine.append(entry.getValue());
-                        }
+        variables = line.split("#");
+        for (String variable : variables) {
+            if (!variable.contains("\"")) {
+                for (Map.Entry<String, String> entry : map.entrySet()) {
+                    if (entry.getKey().equals(variable)) {
+                        newLine.append(entry.getValue());
                     }
-                } else {
-                    newLine.append(variable, 1, variable.length() - 1);
                 }
+            } else {
+                newLine.append(variable, 1, variable.length() - 1);
             }
-        } else {
-            return line.substring(1, line.length() - 1);
         }
         return newLine.toString();
     }
-
 
     private static boolean handleString(Map<String, String> stringMap, String name, String[] attributes) {
         if (name.equals("STRING")) {
             for (String attribute : attributes) {
                 String[] pair = attribute.split("=");
-                stringMap.put(pair[0], pair[1].substring(1, pair[1].length() - 1));
+                stringMap.put(pair[0], handleVariables(pair[1], stringMap));
             }
             return true;
         }
