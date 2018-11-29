@@ -34,8 +34,6 @@ public class BibParser {
     }
 
     /**
-     *
-     *
      * @param filePath Path to file that will be parsed
      * @return document that contains list of created objects
      */
@@ -68,8 +66,8 @@ public class BibParser {
 
                     for (int i = 0; i < pairs.length; i++) {
                         String[] pair = attributes[i + 1].split("=");
-
-                        pairs[i] = new BibPair(pair[0], pair[1].substring(1, pair[1].length() - 1));
+                        pair[1] = BibParser.concatenate(pair[1], stringMap);
+                        pairs[i] = new BibPair(pair[0], pair[1]);
                     }
 
                     boolean found = false;
@@ -99,10 +97,6 @@ public class BibParser {
         return null;
     }
 
-    private static String concatenate() {
-
-        return null;
-    }
 
     /**
      * Receives a path to file and returns its content (checks correctness of the file)
@@ -161,11 +155,34 @@ public class BibParser {
     }
 
 
+    private static String concatenate(String line, Map<String, String> map) {
+        String[] variables;
+        StringBuilder newLine = new StringBuilder();
+        if (line.contains("#")) {
+            variables = line.split("#");
+            for (String variable : variables) {
+                if (!variable.contains("\"")) {
+                    for (Map.Entry<String, String> entry : map.entrySet()) {
+                        if (entry.getKey().equals(variable)) {
+                            newLine.append(entry.getValue());
+                        }
+                    }
+                } else {
+                    newLine.append(variable, 1, variable.length() - 1);
+                }
+            }
+        } else {
+            return line.substring(1, line.length() - 1);
+        }
+        return newLine.toString();
+    }
+
+
     private static boolean handleString(Map<String, String> stringMap, String name, String[] attributes) {
         if (name.equals("STRING")) {
             for (String attribute : attributes) {
                 String[] pair = attribute.split("=");
-                stringMap.put(pair[0], pair[1]);
+                stringMap.put(pair[0], pair[1].substring(1, pair[1].length() - 1));
             }
             return true;
         }

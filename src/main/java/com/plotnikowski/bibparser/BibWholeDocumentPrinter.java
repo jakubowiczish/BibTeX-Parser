@@ -109,7 +109,6 @@ public class BibWholeDocumentPrinter implements IPrint {
                     builder.append(horizontalLine).append('\n');
                     builder.append(realField).append(realValue).append('\n');
                 }
-
             }
 
             builder.append(horizontalLine).append('\n');
