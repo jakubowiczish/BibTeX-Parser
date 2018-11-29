@@ -16,10 +16,11 @@ public class App {
         String[] authors = BibUtils.splitAuthors(auth);
 
         // mozna wiele filtrow jednoczesnie
+        String[] names = new String[] {"BOOK", "INPROCEEDINGS"};
 
-        BibPrinter printer = new BibPrinter(new BibWholeDocumentPrinter(), BibFilter.filter(document, new BibNameFilter("INPROCEEDINGS")));
+        BibPrinter printer = new BibPrinter(new BibWholeDocumentPrinter(), BibFilter.filter(document, new BibNameFilter(names)));
         BibPrinter printer2 = new BibPrinter(new BibWholeDocumentPrinter(), BibFilter.filter(document, new BibAuthorFilter(authors)));
-        BibPrinter printer3 = new BibPrinter(new BibWholeDocumentPrinter(), BibFilter.filter(document, new BibNameFilter(name)));
+//        BibPrinter printer3 = new BibPrinter(new BibWholeDocumentPrinter(), BibFilter.filter(document, new BibNameFilter(name)));
         BibPrinter printerW = new BibPrinter(new BibWholeDocumentPrinter(), document);
 
         if (document != null) {

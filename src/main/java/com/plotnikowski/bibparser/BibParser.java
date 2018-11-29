@@ -34,8 +34,10 @@ public class BibParser {
     }
 
     /**
+     *
+     *
      * @param filePath Path to file that will be parsed
-     * @return list of parsed Objects
+     * @return document that contains list of created objects
      */
     public static BibDocument parse(String filePath) {
         try {
@@ -66,7 +68,7 @@ public class BibParser {
 
                     for (int i = 0; i < pairs.length; i++) {
                         String[] pair = attributes[i + 1].split("=");
-                        
+
                         pairs[i] = new BibPair(pair[0], pair[1].substring(1, pair[1].length() - 1));
                     }
 
@@ -97,6 +99,18 @@ public class BibParser {
         return null;
     }
 
+    private static String concatenate() {
+
+        return null;
+    }
+
+    /**
+     * Receives a path to file and returns its content (checks correctness of the file)
+     *
+     * @param filePath a path to file
+     * @return content of a file which path was given
+     * @throws IOException
+     */
     private static String receiveFile(String filePath) throws IOException {
         BufferedReader bufferedReader = null;
         try {
@@ -129,16 +143,23 @@ public class BibParser {
         }
     }
 
-    private static boolean isEntryRedundant(String entry){
+    /**
+     * Checks whether the entry type is redundant and returns true if it is
+     *
+     * @param entry name of the entry
+     * @return true if the entry is redundant, false otherwise
+     */
+    private static boolean isEntryRedundant(String entry) {
         String[] redundantEntries = new String[]{"preamble", "comment"};
 
-        for (String redundantEntry : redundantEntries){
-            if(entry.equals(redundantEntry)){
+        for (String redundantEntry : redundantEntries) {
+            if (entry.equals(redundantEntry)) {
                 return true;
             }
         }
         return false;
     }
+
 
     private static boolean handleString(Map<String, String> stringMap, String name, String[] attributes) {
         if (name.equals("STRING")) {
