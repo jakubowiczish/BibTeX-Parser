@@ -25,7 +25,7 @@ public class App {
         if (document != null) {
 //            printer.print();
 //            printer2.print();
-            printerW.print();
+            System.out.println(printerW.print());
         }
     }
 

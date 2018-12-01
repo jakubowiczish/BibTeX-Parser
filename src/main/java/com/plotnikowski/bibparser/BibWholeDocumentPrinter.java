@@ -11,7 +11,9 @@ public class BibWholeDocumentPrinter implements IPrint {
      *
      * @param document document that will be printed
      */
-    public void print(BibDocument document) {
+    public String print(BibDocument document) {
+
+        StringBuilder finalResult = new StringBuilder();
 
         int maxRightLength = 0;
         int maxLeftLength = 0;
@@ -112,7 +114,9 @@ public class BibWholeDocumentPrinter implements IPrint {
             }
 
             builder.append(horizontalLine).append('\n');
-            System.out.println(builder);
+            finalResult.append(builder);
+//            System.out.println(builder);
         }
+        return finalResult.toString();
     }
 }

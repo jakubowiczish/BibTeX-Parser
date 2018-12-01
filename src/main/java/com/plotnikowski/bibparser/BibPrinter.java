@@ -4,12 +4,13 @@ public class BibPrinter {
     private final BibDocument document;
     private final IPrint printer;
 
-    BibPrinter(IPrint printer, BibDocument document){
+    public BibPrinter(IPrint printer, BibDocument document) {
         this.printer = printer;
         this.document = document;
     }
 
-    void print(){
-        printer.print(document);
+    public String print() {
+        String result = printer.print(document);
+        return result;
     }
 }
