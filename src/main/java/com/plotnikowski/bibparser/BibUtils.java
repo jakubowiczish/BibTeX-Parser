@@ -4,7 +4,7 @@ import java.io.*;
 
 public class BibUtils {
     /**
-     * Splits authors separated with '|' and returns array of authors
+     * Splits authors separated with 'and' and returns array of authors
      *
      * @param authorField singular String that contains authors separated with '|'
      * @return array of authors

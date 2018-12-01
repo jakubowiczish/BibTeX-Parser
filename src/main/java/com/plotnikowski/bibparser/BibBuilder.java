@@ -21,7 +21,7 @@ public class BibBuilder {
      * Function that builds an object after checking whether arguments are valid
      *
      * @param quoteName quoteName needed to create an Object
-     * @param pairs Array made of BibPair pairs
+     * @param pairs     Array made of BibPair pairs
      * @return new Object if it is possible
      */
     public BibObject build(String quoteName, BibPair[] pairs) {
@@ -32,7 +32,8 @@ public class BibBuilder {
                     fieldFound = true;
                 }
             }
-            if (!fieldFound) throw new RuntimeException("Needed field: " + needed[i] + " for type " + name + " not found");
+            if (!fieldFound)
+                throw new RuntimeException("Needed field: " + needed[i] + " for type " + name + " not found");
         }
 
         for (int i = 0; i < pairs.length; i++) {
@@ -53,6 +54,9 @@ public class BibBuilder {
         return new BibObject(name, quoteName, pairs);
     }
 
+    /**
+     * @return name of the record
+     */
     public String getName() {
         return this.name;
     }

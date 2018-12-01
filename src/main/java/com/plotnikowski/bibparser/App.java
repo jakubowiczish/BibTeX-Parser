@@ -12,7 +12,7 @@ public class App {
 
         String name = "BOOK";
 
-        String auth = "Donald E. Knuth";
+        String auth = "Knuth";
         String[] authors = BibUtils.splitAuthors(auth);
 
         // mozna wiele filtrow jednoczesnie
@@ -20,13 +20,11 @@ public class App {
 
         BibPrinter printer = new BibPrinter(new BibWholeDocumentPrinter(), BibFilter.filter(document, new BibNameFilter(names)));
         BibPrinter printer2 = new BibPrinter(new BibWholeDocumentPrinter(), BibFilter.filter(document, new BibAuthorFilter(authors)));
-//        BibPrinter printer3 = new BibPrinter(new BibWholeDocumentPrinter(), BibFilter.filter(document, new BibNameFilter(name)));
         BibPrinter printerW = new BibPrinter(new BibWholeDocumentPrinter(), document);
 
         if (document != null) {
-            printer.print();
-//            printer2.print();
-//            printer3.print();
+//            printer.print();
+            printer2.print();
 //            printerW.print();
         }
     }

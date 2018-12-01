@@ -9,30 +9,35 @@ import java.util.Arrays;
 public class BibAuthorFilter extends BibPredicateFilter {
 
     BibAuthorFilter(String[] authors) {
-        super(new IPredicate() {
-            @Override
-            public boolean test(BibObject object) {
-                BibPair[] pairs = object.getBibPairs();
+        super(object -> {
+            BibPair[] pairs = object.getBibPairs();
 
-                for (BibPair pair : pairs) {
-                    String field = pair.getField();
-                    String value = pair.getValue();
+            for (BibPair pair : pairs) {
+                String field = pair.getField();
+                String value = pair.getValue();
 
-                    if (field.equals("author") || field.equals("editor")) {
-                        String[] authorsInValue = BibUtils.splitAuthors(value);
-                        boolean contains = true;
-                        for (String author : authorsInValue) {
-                            if (!Arrays.asList(authors).contains(author)) {
-                                contains = false;
+                if (field.equals("author") || field.equals("editor")) {
+                    String[] authorsInValue = BibUtils.splitAuthors(value);
+                    boolean contains = false;
+                    for (String author : authorsInValue) {
+                        if (author.contains(" ")) {
+                            String[] names = author.split(" ");
+
+                            for (String name : names) {
+                                if (Arrays.asList(authors).contains(name)) {
+                                    contains = true;
+                                }
                             }
+
                         }
-                        if (contains) {
-                            return true;
-                        }
+
+                    }
+                    if (contains) {
+                        return true;
                     }
                 }
-                return false;
             }
+            return false;
         });
     }
 

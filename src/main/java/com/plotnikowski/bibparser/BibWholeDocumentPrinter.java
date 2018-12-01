@@ -30,10 +30,10 @@ public class BibWholeDocumentPrinter implements IPrint {
         }
 
         int horizontalLineLength = maxLeftLength + maxRightLength + 8;
-        String horizontalCharacter = "─";
+        String horizontalCharacter = "*";
         String horizontalLine = horizontalCharacter.repeat(horizontalLineLength);
 
-        String verticalCharacter = "│";
+        String verticalCharacter = "#";
         for (BibObject object : document) {
 
             String nameOfPublication = object.getName();
