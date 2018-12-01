@@ -23,7 +23,7 @@ public class BibBuilderTest {
                 new BibPair("note","This is a full ARTICLE entry")
         };
 
-        BibObject object = new BibObject(name, quoteKey, bibPairs);
+        BibObject realObject = new BibObject(name, quoteKey, bibPairs);
 
 
         BibFieldNames[] needed = BibFieldNames.createArray("author, title, journal, year");
@@ -31,7 +31,9 @@ public class BibBuilderTest {
 
         BibBuilder builder = new BibBuilder(name, needed, optional);
 
-        assertEquals(object, builder.build(quoteKey, bibPairs));
+        BibObject expectedObject = builder.build(quoteKey, bibPairs);
+
+        assertEquals(expectedObject, realObject);
     }
 
 

@@ -2,6 +2,7 @@ package com.plotnikowski.bibparser;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
@@ -36,4 +37,13 @@ public class BibDocument implements Iterable<BibObject> {
     public Spliterator<BibObject> spliterator() {
         return objects.spliterator();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BibDocument that = (BibDocument) o;
+        return Objects.equals(objects, that.objects);
+    }
+
 }

@@ -56,11 +56,11 @@ public class BibParser {
                 firstBracketIndex = withoutWhiteSpaces.indexOf('{', lastAtIndex);
                 lastBracketIndex = objectLastBracket(withoutWhiteSpaces, firstBracketIndex);
 
-                String entry = withoutWhiteSpaces.substring(lastAtIndex + 1, firstBracketIndex);
+                String entry = withoutWhiteSpaces.substring(lastAtIndex + 1, firstBracketIndex).trim();
                 String[] attributes = withoutWhiteSpaces.substring(firstBracketIndex + 1, lastBracketIndex).split(",");
 
                 if (!handleString(stringMap, entry, attributes) && !isEntryRedundant(entry)) {
-                    String quoteName = attributes[0];
+                    String quoteName = attributes[0].trim();
 
                     BibPair[] pairs = new BibPair[attributes.length - 1];
 
@@ -68,7 +68,7 @@ public class BibParser {
                         String[] pair = attributes[i + 1].split("=");
                         pair[1] = BibParser.handleVariables(pair[1], stringMap);
 
-                        pairs[i] = new BibPair(pair[0], pair[1]);
+                        pairs[i] = new BibPair(pair[0].trim(), pair[1].trim());
                     }
 
                     boolean found = false;
@@ -86,10 +86,8 @@ public class BibParser {
                 }
                 lastAtIndex = withoutWhiteSpaces.indexOf('@', lastAtIndex + 1);
             }
-
-
-
             return bibDocument;
+
         } catch (IOException e) {
             e.printStackTrace();
         }

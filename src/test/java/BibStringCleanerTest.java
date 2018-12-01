@@ -10,7 +10,8 @@ public class BibStringCleanerTest {
                 "   author = \"douard Masterly\",\n" +
                 "   title = \"Mastering Thesis Writing\",\n";
 
-        String result = "@MASTERSTHESIS{mastersthesis-full,author=\"douard Masterly\",title=\"Mastering Thesis Writing\",";
-        assertEquals(BibStringCleaner.deleteWhiteSpaces(toBeTested), result);
+        String realResult = "@MASTERSTHESIS{mastersthesis-full,author=\"douard Masterly\",title=\"Mastering Thesis Writing\",";
+        String expectedResult = BibStringCleaner.deleteWhiteSpaces(toBeTested);
+        assertEquals(expectedResult, realResult);
     }
 }

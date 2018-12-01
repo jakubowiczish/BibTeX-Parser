@@ -30,7 +30,6 @@ public class BibAuthorFilter extends BibPredicateFilter {
                             }
 
                         }
-
                     }
                     if (contains) {
                         return true;
