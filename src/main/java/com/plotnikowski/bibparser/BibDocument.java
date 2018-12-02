@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 
 /**
  * Class representing document, uses Iterator Design Pattern
+ * Contains list of objects that represent whole document
  */
 public class BibDocument implements Iterable<BibObject> {
     private ArrayList<BibObject> objects;

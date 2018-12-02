@@ -22,7 +22,7 @@ public class BibBuilder {
      *
      * @param quoteName quoteName needed to create an Object
      * @param pairs     Array made of BibPair pairs
-     * @return new Object if it is possible
+     * @return new Object if it is possible (object contains all needed fields and not too many optional fields)
      */
     public BibObject build(String quoteName, BibPair[] pairs) {
         for (int i = 0; i < needed.length; i++) {

@@ -1,8 +1,6 @@
 package com.plotnikowski.bibparser;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -21,6 +19,9 @@ public class BibObject {
         this.bibPairs = bibPair;
     }
 
+    /**
+     * @return maximum length of fields in singular object
+     */
     public int getMaxFieldLength() {
         int maxFieldLength = 0;
         for (BibPair pair : bibPairs) {
@@ -33,6 +34,9 @@ public class BibObject {
         return maxFieldLength;
     }
 
+    /**
+     * @return maximum length of values in singular object
+     */
     public int getMaxValueLength() {
         int maxValueLength = 0;
         for (BibPair pair : bibPairs) {

@@ -8,8 +8,19 @@ import java.io.File;
 
 import static org.junit.Assert.*;
 
-
+/**
+ * Class created to test printing whole document
+ */
 public class BibWholeDocumentPrinterTest {
+    @Test
+    public void handleNamesTest() {
+        String[] authors = new String[]{"Knuth | Donald E.", "Lipcoll | David J.", "Lawrie | D. H.", "Sameh | A. H.", "Larry Manmaker"};
+        String[] expectedAuthors = BibWholeDocumentPrinter.handleNames(authors);
+        String[] realAuthors = new String[] {"Donald E. Knuth", "David J. Lipcoll", "D. H. Lawrie", "A. H. Sameh", "Larry Manmaker"};
+
+        assertArrayEquals(expectedAuthors, realAuthors);
+    }
+
     @Test
     public void printTest() {
         File file = new File("test2.bib");

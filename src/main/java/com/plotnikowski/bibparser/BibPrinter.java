@@ -10,7 +10,6 @@ public class BibPrinter {
     }
 
     public String print() {
-        String result = printer.print(document);
-        return result;
+        return printer.print(document);
     }
 }

@@ -1,7 +1,5 @@
 package com.plotnikowski.bibparser;
 
-import java.io.*;
-
 /**
  * Class used to clean given file up - delete not needed fields
  */

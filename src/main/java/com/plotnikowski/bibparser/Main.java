@@ -3,22 +3,11 @@ package com.plotnikowski.bibparser;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
-import picocli.CommandLine.Parameters;
 
 import java.io.File;
-import java.util.Arrays;
 
 @Command(name = "test", mixinStandardHelpOptions = true, version = "first tak o")
 public class Main implements Runnable {
-
-//    @Parameters(index = "0", description = "a path to BibTeX file that is to be parsed", paramLabel = "FilePath")
-//    private File file;
-//
-//    @Parameters(index = "1", description = "authors", paramLabel = "Authors", split = ",")
-//    private String[] authors;
-//
-//    @Parameters(index = "2", description = "entry type", paramLabel = "Entry", split = ",")
-//    private String[] names;
 
     @Option(names = {"--file"}, description = "a path to BibTeX file that is to be parsed", paramLabel = "FilePath")
     private File file;
@@ -63,6 +52,5 @@ public class Main implements Runnable {
             );
             System.out.println(printerWithBothFilters.print());
         }
-
     }
 }

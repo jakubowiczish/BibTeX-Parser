@@ -7,7 +7,7 @@ public class BibBuilders {
     /**
      *
      *
-     * @return Array that contains builders for all types of record
+     * @return Array that contains builders for all types of records
      */
     public static BibBuilder[] getDefaultBuilders() {
         return new BibBuilder[]{

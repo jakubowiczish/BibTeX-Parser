@@ -1,25 +1,54 @@
 package com.plotnikowski.bibparser;
 
-import java.util.Arrays;
-
+/**
+ * Class that is used to print whole document
+ */
 public class BibWholeDocumentPrinter implements IPrint {
 
     private static String fixedLengthString(String string, int length) {
         return String.format("%" + length + "s", string);
     }
 
-    private static String repeat(String character, int count){
+    /**
+     * Creates horizontal line
+     *
+     * @param character character which we want to repeat through the whole horizontal line
+     * @param lenght    length of the line
+     * @return created horizontal line of characters
+     */
+    private static String repeat(String character, int lenght) {
         StringBuilder stringBuilder = new StringBuilder();
-        for(int i = 0; i < count; i++){
+        for (int i = 0; i < lenght; i++) {
             stringBuilder.append(character);
         }
         return stringBuilder.toString();
     }
 
     /**
-     * Prints whole document
      *
-     * @param document document that will be printed
+     * @param authors
+     * @return
+     */
+    public static String[] handleNames(String[] authors) {
+        for (int i = 0; i < authors.length; i++) {
+            String[] names;
+            String resultName;
+            if (authors[i].contains("|")) {
+                names = authors[i].split("\\|");
+                resultName = names[1] + " " + names[0];
+            } else {
+                resultName = authors[i];
+            }
+            authors[i] = resultName.trim();
+        }
+        return authors;
+    }
+
+    /**
+     * Returns prepared String
+     *
+     * @param document document that is to be printed
+     * @return prepared String to be printed
      */
     public String print(BibDocument document) {
 
@@ -88,17 +117,7 @@ public class BibWholeDocumentPrinter implements IPrint {
                 if (field.equals("author") || field.equals("editor")) {
                     String[] authors = BibUtils.splitAuthors(value);
 
-                    for (int i = 0; i < authors.length; i++) {
-                        String[] names;
-                        String resultName;
-                        if (authors[i].contains("|")) {
-                            names = authors[i].split("\\|");
-                            resultName = names[1] + " " + names[0];
-                        } else {
-                            resultName = authors[i];
-                        }
-                        authors[i] = resultName.trim();
-                    }
+                    authors = handleNames(authors);
 
                     int lengthAdd = maxRightLength + 4;
                     String alignmentE = fixedLengthString(" ", lengthAdd) + verticalCharacter;

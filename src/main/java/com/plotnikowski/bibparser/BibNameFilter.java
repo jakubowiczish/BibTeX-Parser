@@ -1,7 +1,7 @@
 package com.plotnikowski.bibparser;
 
 /**
- * Class that is used to search for
+ * Class that is used to search for records that contain given names
  */
 public class BibNameFilter extends BibPredicateFilter {
     BibNameFilter(String[] names) {

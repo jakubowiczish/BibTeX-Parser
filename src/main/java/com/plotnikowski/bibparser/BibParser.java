@@ -34,7 +34,7 @@ public class BibParser {
     }
 
     /**
-     * @param file Path to file that will be parsed
+     * @param file file that is to be parsed
      * @return document that contains list of created objects
      */
     public static BibDocument parse(File file) {

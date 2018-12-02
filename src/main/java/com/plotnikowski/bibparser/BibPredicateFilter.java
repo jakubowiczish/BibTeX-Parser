@@ -1,8 +1,10 @@
 package com.plotnikowski.bibparser;
 
-
 import java.util.ArrayList;
 
+/**
+ * Class that is used to filter documents
+ */
 public class BibPredicateFilter implements IFilter {
     private final IPredicate predicate;
 

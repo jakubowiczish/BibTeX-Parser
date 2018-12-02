@@ -20,8 +20,8 @@ public class BibFieldNames {
      * Deals with situation, when fields' names are not exactly specified e.g.
      * when given publication is book, one of needed fields' names is author or editor
      *
-     * @param string
-     * @return
+     * @param string constains one or two possible names separated with '|'
+     * @return array of created fields
      */
     public static BibFieldNames[] createArray(String string) {
         String[] split = string.split(", ");
@@ -37,6 +37,12 @@ public class BibFieldNames {
         return bibFieldNames;
     }
 
+    /**
+     * Checks whether there is needed or optional field in pair
+     *
+     * @param pair pair which fields' we want to check
+     * @return boolean value that tells us whether we have name1 or name2 in given pair
+     */
     public boolean contains(BibPair pair) {
         if(pair.getField().equals(name1)) return true;
         return pair.getField().equals(name2);
