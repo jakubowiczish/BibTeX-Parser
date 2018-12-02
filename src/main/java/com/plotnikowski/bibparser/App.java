@@ -6,7 +6,7 @@ public class App {
     }
 
     public static void main(String[] args) {
-        String filePath = "test.bib";
+        String filePath = "test2.bib";
 
         BibDocument document = BibParser.parse(filePath);
 
