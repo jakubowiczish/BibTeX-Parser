@@ -2,24 +2,25 @@ package com.plotnikowski.bibparser;
 
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
-import picocli.CommandLine.Parameters;
 
+import java.util.Arrays;
 
 @CommandLine.Command(name = "test", mixinStandardHelpOptions = true, version = "first tak o")
 public class Main implements Runnable {
 
-    @Option(names = {"--file"}, required = true, usageHelp = true,
-            description = "a path to BibTeX file that is to be parsed", paramLabel = "File Path")
+    @Option(names = {"-f", "--file"}, required = true,
+            description = "a path to BibTeX file that is to be parsed", paramLabel = "FilePath")
     private String filePath;
 
-    @Option(names = {"--author"}, usageHelp = true, description = "authors", paramLabel = "Authors", split = ",")
+    @Option(names = {"-a", "--author"},  description = "authors", paramLabel = "Authors", split = ",")
     private String[] authors;
 
-    @Option(names = {"--entry"}, usageHelp = true, description = "entry type", paramLabel = "Entry")
+    @Option(names = {"-e", "--entry"}, description = "entry type", paramLabel = "Entry", split = ",")
     private String[] names;
 
 
     public static void main(String[] args) {
+        System.out.println(Arrays.toString(args));
         CommandLine.run(new Main(), args);
     }
 

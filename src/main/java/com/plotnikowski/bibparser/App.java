@@ -6,7 +6,7 @@ public class App {
     }
 
     public static void main(String[] args) {
-        String filePath = "test2.bib";
+        String filePath = "D:\\Studia\\GITHUB\\ObjectOrientedProgramming---Project-1\\test.bib";
 
         BibDocument document = BibParser.parse(filePath);
 
