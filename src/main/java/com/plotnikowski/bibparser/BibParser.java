@@ -37,7 +37,7 @@ public class BibParser {
      * @param filePath Path to file that will be parsed
      * @return document that contains list of created objects
      */
-    public static BibDocument parse(String filePath) {
+    public static BibDocument parse(File file) {
         try {
             Map<String, String> stringMap = new HashMap<>();
             ArrayList<BibObject> objects = new ArrayList<>();
@@ -45,7 +45,7 @@ public class BibParser {
 
             BibBuilder[] bibBuilders = BibBuilders.getDefaultBuilders();
 
-            String fileContent = BibParser.receiveFile(filePath);
+            String fileContent = BibParser.receiveFile(file);
             String withoutWhiteSpaces = BibStringCleaner.deleteWhiteSpaces(fileContent);
 
             int firstBracketIndex = 0;
@@ -98,18 +98,17 @@ public class BibParser {
     /**
      * Receives a path to file and returns its content (checks correctness of the file)
      *
-     * @param filePath a path to file
+     * @param inputFile given file
      * @return content of a file which path was given
      * @throws IOException
      */
-    private static String receiveFile(String filePath) throws IOException {
+    private static String receiveFile(File inputFile) throws IOException {
         BufferedReader bufferedReader = null;
         try {
-            File inputFile = new File(filePath);
 
-            if (!inputFile.isFile()) {
-                throw new FileNotFoundException("Parameter is not a file");
-            }
+//            if (!inputFile.isFile()) {
+//                throw new FileNotFoundException("Parameter is not a file");
+//            }
             bufferedReader = new BufferedReader(new FileReader(inputFile));
 
             String line;
@@ -121,8 +120,6 @@ public class BibParser {
 
             return stringBuilder.toString();
 
-        } catch (IOException e) {
-            throw e;
         } finally {
             try {
                 if (bufferedReader != null)

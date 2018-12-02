@@ -1,12 +1,14 @@
 package com.plotnikowski.bibparser;
 
+import java.io.File;
+
 public class App {
     public String getGreeting() {
         return "Hello world.";
     }
 
     public static void main(String[] args) {
-        String filePath = "D:\\Studia\\GITHUB\\ObjectOrientedProgramming---Project-1\\test.bib";
+        File filePath = new File("D:\\Studia\\GITHUB\\ObjectOrientedProgramming---Project-1\\test.bib");
 
         BibDocument document = BibParser.parse(filePath);
 
