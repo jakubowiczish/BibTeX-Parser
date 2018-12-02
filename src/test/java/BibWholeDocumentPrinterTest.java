@@ -4,14 +4,16 @@ import com.plotnikowski.bibparser.BibPrinter;
 import com.plotnikowski.bibparser.BibWholeDocumentPrinter;
 import org.junit.Test;
 
+import java.io.File;
+
 import static org.junit.Assert.*;
 
 
 public class BibWholeDocumentPrinterTest {
     @Test
     public void printTest() {
-        String filePath = "test2.bib";
-        BibDocument expectedDocument = BibParser.parse(filePath);
+        File file = new File("test2.bib");
+        BibDocument expectedDocument = BibParser.parse(file);
         String realResult =
                 "------------------------------------------------------------------\n" +
                         "# ARTICLE                                                        #\n" +

@@ -1,9 +1,19 @@
 package com.plotnikowski.bibparser;
 
+import java.util.Arrays;
+
 public class BibWholeDocumentPrinter implements IPrint {
 
     private static String fixedLengthString(String string, int length) {
         return String.format("%" + length + "s", string);
+    }
+
+    private static String repeat(String character, int count){
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int i = 0; i < count; i++){
+            stringBuilder.append(character);
+        }
+        return stringBuilder.toString();
     }
 
     /**
@@ -33,7 +43,7 @@ public class BibWholeDocumentPrinter implements IPrint {
 
         int horizontalLineLength = maxLeftLength + maxRightLength + 8;
         String horizontalCharacter = "-";
-        String horizontalLine = horizontalCharacter.repeat(horizontalLineLength);
+        String horizontalLine = repeat(horizontalCharacter, horizontalLineLength);
 
         String verticalCharacter = "#";
         for (BibObject object : document) {

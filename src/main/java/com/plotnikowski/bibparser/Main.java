@@ -1,36 +1,68 @@
 package com.plotnikowski.bibparser;
 
 import picocli.CommandLine;
+import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
+import picocli.CommandLine.Parameters;
 
 import java.io.File;
+import java.util.Arrays;
 
-@CommandLine.Command(name = "test", mixinStandardHelpOptions = true, version = "first tak o")
+@Command(name = "test", mixinStandardHelpOptions = true, version = "first tak o")
 public class Main implements Runnable {
 
-    @CommandLine.Parameters(arity = "1",
-            description = "a path to BibTeX file that is to be parsed", paramLabel = "FilePath")
+//    @Parameters(index = "0", description = "a path to BibTeX file that is to be parsed", paramLabel = "FilePath")
+//    private File file;
+//
+//    @Parameters(index = "1", description = "authors", paramLabel = "Authors", split = ",")
+//    private String[] authors;
+//
+//    @Parameters(index = "2", description = "entry type", paramLabel = "Entry", split = ",")
+//    private String[] names;
+
+    @Option(names = {"--file"}, description = "a path to BibTeX file that is to be parsed", paramLabel = "FilePath")
     private File file;
 
-    @Option(names = {"-a", "--author"},  description = "authors", paramLabel = "Authors", split = ",")
+    @Option(names = {"--author"}, description = "authors", paramLabel = "Authors", split = ",")
     private String[] authors;
 
-    @Option(names = {"-e", "--entry"}, description = "entry type", paramLabel = "Entry", split = ",")
+    @Option(names = {"--name"}, description = "entry type", paramLabel = "Entry", split = ",")
     private String[] names;
 
 
     public static void main(String[] args) {
-        args = new String[] {"-a Knuth", "-e BOOK", "D:\\Studia\\GITHUB\\ObjectOrientedProgramming---Project-1\\test.bib"};
+//        args = new String[]{"--file=D:\\Studia\\GITHUB\\ObjectOrientedProgramming---Project-1\\test.bib", "--author=Lipcoll,Knuth"};
         CommandLine.run(new Main(), args);
     }
 
     public void run() {
         BibDocument document = BibParser.parse(file);
-        BibPrinter printer = new BibPrinter(
-                new BibWholeDocumentPrinter(),
-                BibFilter.filter(document /*new BibNameFilter(names), new BibAuthorFilter(authors)*/)
-                );
 
-        System.out.println(printer.print());
+        if (authors == null && names == null) {
+            BibPrinter printerWithoutArguments = new BibPrinter(new BibWholeDocumentPrinter(), document);
+            System.out.println(printerWithoutArguments.print());
+
+        } else if (authors == null) {
+            BibPrinter printerWithoutAuthors = new BibPrinter(
+                    new BibWholeDocumentPrinter(),
+                    BibFilter.filter(document, new BibNameFilter(names))
+            );
+            System.out.println(printerWithoutAuthors.print());
+
+        } else if (names == null) {
+            BibPrinter printerWithoutNames = new BibPrinter(
+                    new BibWholeDocumentPrinter(),
+                    BibFilter.filter(document, new BibAuthorFilter(authors))
+            );
+            System.out.println(printerWithoutNames.print());
+
+        } else {
+            BibPrinter printerWithBothFilters = new BibPrinter(
+                    new BibWholeDocumentPrinter(),
+                    BibFilter.filter(document, new BibNameFilter(names), new BibAuthorFilter(authors))
+            );
+            System.out.println(printerWithBothFilters.print());
+        }
+
     }
 }

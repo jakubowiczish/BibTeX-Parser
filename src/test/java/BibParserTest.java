@@ -4,17 +4,17 @@ import com.plotnikowski.bibparser.BibPair;
 import com.plotnikowski.bibparser.BibParser;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
-
 
 public class BibParserTest {
 
     @Test
     public void parseTest() {
-        String filePath = "bibParserTest.bib";
-        BibDocument document = BibParser.parse(filePath);
+        File file = new File("bibParserTest.bib");
+        BibDocument document = BibParser.parse(file);
 
         String name = "BOOKLET";
         String quoteKey = "booklet-full";
