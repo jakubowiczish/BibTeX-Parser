@@ -2,6 +2,9 @@ package com.plotnikowski.bibparser;
 
 import java.util.Objects;
 
+/**
+ * Uses Strategy Design Pattern
+ */
 public class BibPrinter {
     private final BibDocument document;
     private final IPrint printer;

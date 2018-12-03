@@ -1,6 +1,8 @@
 package com.plotnikowski.bibparser;
 
 /**
+ * Uses Strategy Design Pattern
+ *
  * Class that is used to print whole document
  */
 public class BibWholeDocumentPrinter implements IPrint {

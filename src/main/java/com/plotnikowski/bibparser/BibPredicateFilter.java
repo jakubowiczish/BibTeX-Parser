@@ -3,6 +3,8 @@ package com.plotnikowski.bibparser;
 import java.util.ArrayList;
 
 /**
+ * Uses Strategy Design Pattern
+ *
  * Class that is used to filter documents
  */
 public class BibPredicateFilter implements IFilter {

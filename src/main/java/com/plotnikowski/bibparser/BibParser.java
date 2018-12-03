@@ -3,6 +3,7 @@ package com.plotnikowski.bibparser;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 /**
@@ -46,7 +47,9 @@ public class BibParser {
             BibBuilder[] bibBuilders = BibBuilders.getDefaultBuilders();
 
             String fileContent = BibParser.receiveFile(file);
-            String withoutWhiteSpaces = BibStringCleaner.deleteWhiteSpaces(fileContent);
+
+            LinkedList<Integer> newLines = new LinkedList<>();
+            String withoutWhiteSpaces = BibStringCleaner.deleteWhiteSpaces(fileContent, newLines);
 
             int firstBracketIndex = 0;
             int lastBracketIndex = 0;
@@ -81,7 +84,7 @@ public class BibParser {
                     }
 
                     if (!found) {
-                        throw new IllegalArgumentException("Cannot parse field with " + entry + " entry");
+                        throw new IllegalArgumentException("Cannot parse field with " + entry + " entry at line: " + returnLine(newLines, lastAtIndex));
                     }
                 }
                 lastAtIndex = withoutWhiteSpaces.indexOf('@', lastAtIndex + 1);
@@ -105,10 +108,6 @@ public class BibParser {
     private static String receiveFile(File inputFile) throws IOException {
         BufferedReader bufferedReader = null;
         try {
-
-//            if (!inputFile.isFile()) {
-//                throw new FileNotFoundException("Parameter is not a file");
-//            }
             bufferedReader = new BufferedReader(new FileReader(inputFile));
 
             String line;
@@ -176,6 +175,17 @@ public class BibParser {
             return true;
         }
         return false;
+    }
+
+    private static int returnLine(LinkedList<Integer> lines, int index) {
+        int lineNumber = 1;
+        for (Integer line : lines) {
+            if (index < line) {
+                break;
+            }
+            lineNumber++;
+        }
+        return lineNumber;
     }
 }
 

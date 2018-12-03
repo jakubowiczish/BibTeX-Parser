@@ -5,11 +5,12 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
 import java.io.File;
+import java.util.ArrayList;
 
 @Command(
         name = "BIBTEX PARSER",
         mixinStandardHelpOptions = true,
-        version = "BibTexParser version 1.0",
+        version = "BibTexParser version 1.0 \ncreated by Jakub Płotnikowski, 2018 \nAll rights reserved",
         header = "Presents filtered BibTex file",
         description = "Given BibTex file is parsed " +
                 "and filtered"
@@ -32,32 +33,28 @@ public class Main implements Runnable {
     }
 
     public void run() {
-        BibDocument document = BibParser.parse(file);
-
-        if (authors == null && names == null) {
-            BibPrinter printerWithoutArguments = new BibPrinter(new BibWholeDocumentPrinter(), document);
-            System.out.println(printerWithoutArguments.print());
-
-        } else if (authors == null) {
-            BibPrinter printerWithoutAuthors = new BibPrinter(
-                    new BibWholeDocumentPrinter(),
-                    BibFilter.filter(document, new BibNameFilter(names))
-            );
-            System.out.println(printerWithoutAuthors.print());
-
-        } else if (names == null) {
-            BibPrinter printerWithoutNames = new BibPrinter(
-                    new BibWholeDocumentPrinter(),
-                    BibFilter.filter(document, new BibAuthorFilter(authors))
-            );
-            System.out.println(printerWithoutNames.print());
-
-        } else {
-            BibPrinter printerWithBothFilters = new BibPrinter(
-                    new BibWholeDocumentPrinter(),
-                    BibFilter.filter(document, new BibNameFilter(names), new BibAuthorFilter(authors))
-            );
-            System.out.println(printerWithBothFilters.print());
+        if (file == null) {
+            System.out.println("Try adding -h for more information");
+            return;
         }
+
+        BibDocument document = BibParser.parse(file);
+        ArrayList<IFilter> filters = new ArrayList<>();
+
+        if (names != null) {
+            for (int i = 0; i < names.length; i++) {
+                names[i] = names[i].toUpperCase();
+            }
+            filters.add(new BibNameFilter(names));
+        }
+        if (authors != null) {
+            filters.add(new BibAuthorFilter(authors));
+        }
+
+        BibPrinter printer = new BibPrinter(
+                new BibWholeDocumentPrinter(),
+                BibFilter.filter(document, filters.toArray(new IFilter[0]))
+        );
+        System.out.println(printer.print());
     }
 }

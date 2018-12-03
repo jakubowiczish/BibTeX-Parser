@@ -3,6 +3,8 @@ package com.plotnikowski.bibparser;
 import java.util.Arrays;
 
 /**
+ * Uses Strategy Design Pattern
+ *
  * Class used to search for publications given name of publication or author (authors)
  */
 public class BibAuthorFilter extends BibPredicateFilter {

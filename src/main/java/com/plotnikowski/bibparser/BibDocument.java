@@ -7,7 +7,9 @@ import java.util.Spliterator;
 import java.util.function.Consumer;
 
 /**
- * Class representing document, uses Iterator Design Pattern
+ * Uses Iterator Design Pattern
+ *
+ * Class representing document
  * Contains list of objects that represent whole document
  */
 public class BibDocument implements Iterable<BibObject> {

@@ -1,6 +1,8 @@
 package com.plotnikowski.bibparser;
 
 /**
+ * Uses Strategy Design Pattern
+ *
  * Class that is used to search for records that contain given names
  */
 public class BibNameFilter extends BibPredicateFilter {

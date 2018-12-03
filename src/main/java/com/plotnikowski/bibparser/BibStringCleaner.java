@@ -1,5 +1,8 @@
 package com.plotnikowski.bibparser;
 
+import java.security.Policy;
+import java.util.LinkedList;
+
 /**
  * Class used to clean given file up - delete not needed fields
  */
@@ -10,7 +13,7 @@ public class BibStringCleaner {
      * @param toDelete String that is to be cleaned up from white spaces
      * @return String without white spaces apart from ones between quotation marks
      */
-    public static String deleteWhiteSpaces(String toDelete) {
+    public static String deleteWhiteSpaces(String toDelete, LinkedList<Integer> newLines) {
         StringBuilder stringBuilder = new StringBuilder();
         int quoteCounter = 0;
 
@@ -26,6 +29,8 @@ public class BibStringCleaner {
             } else {
                 if (ch != ' ' && ch != '\t' && ch != '\n' && ch != '\r') {
                     stringBuilder.append(ch);
+                } else if(ch == '\n'){
+                    newLines.add(stringBuilder.length());
                 }
             }
         }
