@@ -5,8 +5,6 @@ package com.plotnikowski.bibparser;
  */
 public class BibBuilders {
     /**
-     *
-     *
      * @return Array that contains builders for all types of records
      */
     public static BibBuilder[] getDefaultBuilders() {

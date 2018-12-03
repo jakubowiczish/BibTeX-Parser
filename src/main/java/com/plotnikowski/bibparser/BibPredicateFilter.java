@@ -12,17 +12,16 @@ public class BibPredicateFilter implements IFilter {
         boolean test(BibObject object);
     }
 
-    BibPredicateFilter(IPredicate predicate){
+    BibPredicateFilter(IPredicate predicate) {
         this.predicate = predicate;
     }
-
 
     @Override
     public BibDocument filter(BibDocument document) {
         ArrayList<BibObject> objects = new ArrayList<>();
 
-        for(BibObject object : document){
-            if(predicate.test(object)){
+        for (BibObject object : document) {
+            if (predicate.test(object)) {
                 objects.add(object);
             }
         }

@@ -25,9 +25,8 @@ public class BibWholeDocumentPrinter implements IPrint {
     }
 
     /**
-     *
-     * @param authors
-     * @return
+     * @param authors array of authors that should be formatted
+     * @return formatted array
      */
     public static String[] handleNames(String[] authors) {
         for (int i = 0; i < authors.length; i++) {

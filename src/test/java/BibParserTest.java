@@ -14,7 +14,7 @@ public class BibParserTest {
     @Test
     public void parseTest() {
         File file = new File("bibParserTest.bib");
-        BibDocument document = BibParser.parse(file);
+        BibDocument expectedDocument = BibParser.parse(file);
 
         String name = "BOOKLET";
         String quoteKey = "booklet-full";
@@ -34,8 +34,8 @@ public class BibParserTest {
         objects.add(object);
         BibDocument realDocument = new BibDocument(objects);
 
-        assertNotNull(document);
+        assertNotNull(expectedDocument);
         assertNotNull(realDocument);
-        assertEquals(document, realDocument);
+        assertEquals(expectedDocument, realDocument);
     }
 }

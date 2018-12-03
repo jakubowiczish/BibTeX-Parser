@@ -6,16 +6,23 @@ import picocli.CommandLine.Option;
 
 import java.io.File;
 
-@Command(name = "test", mixinStandardHelpOptions = true, version = "first tak o")
+@Command(
+        name = "BIBTEX PARSER",
+        mixinStandardHelpOptions = true,
+        version = "BibTexParser version 1.0",
+        header = "Presents filtered BibTex file",
+        description = "Given BibTex file is parsed " +
+                "and filtered"
+)
 public class Main implements Runnable {
 
-    @Option(names = {"--file"}, description = "a path to BibTeX file that is to be parsed", paramLabel = "FilePath")
+    @Option(names = {"--file"}, description = "a path to BibTeX file that is to be parsed", paramLabel = "FILEPATH")
     private File file;
 
-    @Option(names = {"--author"}, description = "authors", paramLabel = "Authors", split = ",")
+    @Option(names = {"--author"}, description = "authors separated with ','", paramLabel = "AUTHOR(S)", split = ",")
     private String[] authors;
 
-    @Option(names = {"--name"}, description = "entry type", paramLabel = "Entry", split = ",")
+    @Option(names = {"--name"}, description = "entry types e.g. BOOK, separated with ','", paramLabel = "ENTRY", split = ",")
     private String[] names;
 
 

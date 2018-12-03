@@ -7,7 +7,7 @@ import java.util.Arrays;
  */
 public class BibAuthorFilter extends BibPredicateFilter {
 
-    BibAuthorFilter(String[] authors) {
+    public BibAuthorFilter(String[] authors) {
         super(object -> {
             BibPair[] pairs = object.getBibPairs();
 

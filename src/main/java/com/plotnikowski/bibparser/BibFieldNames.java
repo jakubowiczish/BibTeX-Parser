@@ -7,12 +7,12 @@ public class BibFieldNames {
     private String name1;
     private String name2;
 
-    BibFieldNames(String name1, String name2){
+    BibFieldNames(String name1, String name2) {
         this.name1 = name1;
         this.name2 = name2;
     }
 
-    BibFieldNames(String name){
+    BibFieldNames(String name) {
         this(name, null);
     }
 
@@ -27,7 +27,7 @@ public class BibFieldNames {
         String[] split = string.split(", ");
         BibFieldNames[] bibFieldNames = new BibFieldNames[split.length];
         for (int i = 0; i < split.length; i++) {
-            if(split[i].contains("|")) {
+            if (split[i].contains("|")) {
                 String[] split2 = split[i].split("\\|");
                 bibFieldNames[i] = new BibFieldNames(split2[0], split2[1]);
             } else {
@@ -44,7 +44,7 @@ public class BibFieldNames {
      * @return boolean value that tells us whether we have name1 or name2 in given pair
      */
     public boolean contains(BibPair pair) {
-        if(pair.getField().equals(name1)) return true;
+        if (pair.getField().equals(name1)) return true;
         return pair.getField().equals(name2);
     }
 
