@@ -11,7 +11,7 @@ public class FilterTest {
     public void filterAuthorTest() {
 
         BibDocument toBeFiltered = BibParser.parse(new File("filterTest.bib"));
-        String[] authors = new String[] {"Lincoll", "Knuth"};
+        String[] authors = new String[]{"Lincoll", "Knuth"};
 
         BibPrinter expectedAuthorFilter = new BibPrinter(new BibWholeDocumentPrinter(),
                 BibFilter.filter(toBeFiltered, new BibAuthorFilter(authors)));
@@ -26,9 +26,9 @@ public class FilterTest {
     }
 
     @Test
-    public void filterNameTest(){
+    public void filterNameTest() {
         BibDocument toBeFiltered = BibParser.parse(new File("filterTest.bib"));
-        String[] names = new String[] {"BOOK", "INCOLLECTION"};
+        String[] names = new String[]{"BOOK", "INCOLLECTION"};
 
         BibPrinter expectedNameFilter = new BibPrinter(new BibWholeDocumentPrinter(),
                 BibFilter.filter(toBeFiltered, new BibNameFilter(names)));

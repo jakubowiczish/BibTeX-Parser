@@ -78,7 +78,7 @@ public class BibParser {
                     for (BibBuilder bibBuilder : bibBuilders) {
                         if (bibBuilder.getName().equals(entry)) {
                             found = true;
-                            objects.add(bibBuilder.build(quoteName, pairs));
+                            objects.add(bibBuilder.build(quoteName, pairs, returnLine(newLines, lastAtIndex)));
                             break;
                         }
                     }
@@ -177,7 +177,7 @@ public class BibParser {
         return false;
     }
 
-    private static int returnLine(LinkedList<Integer> lines, int index) {
+    static int returnLine(LinkedList<Integer> lines, int index) {
         int lineNumber = 1;
         for (Integer line : lines) {
             if (index < line) {

@@ -22,9 +22,10 @@ public class BibBuilder {
      *
      * @param quoteName quoteName needed to create an Object
      * @param pairs     Array made of BibPair pairs
+     * @param line      line in which is the name of currently processed record
      * @return new Object if it is possible (object contains all needed fields and not too many optional fields)
      */
-    public BibObject build(String quoteName, BibPair[] pairs) {
+    public BibObject build(String quoteName, BibPair[] pairs, int line) {
         for (int i = 0; i < needed.length; i++) {
             boolean fieldFound = false;
             for (int j = 0; j < pairs.length; j++) {
@@ -32,8 +33,9 @@ public class BibBuilder {
                     fieldFound = true;
                 }
             }
-            if (!fieldFound)
-                throw new RuntimeException("Needed field: " + needed[i] + " for type " + name + " not found");
+            if (!fieldFound) {
+                throw new RuntimeException("Needed field " + needed[i] + " for type " + name + " at line " + line + " not found");
+            }
         }
 
         for (int i = 0; i < pairs.length; i++) {
@@ -48,7 +50,9 @@ public class BibBuilder {
                     fieldFound = true;
                 }
             }
-            if (!fieldFound) throw new RuntimeException("Wrong optional field: " + pairs[i] + " for type: " + name);
+            if (!fieldFound) {
+                throw new RuntimeException("Wrong optional field " + pairs[i].getField() + " for type " + name + " at line " + line);
+            }
         }
 
         return new BibObject(name, quoteName, pairs);

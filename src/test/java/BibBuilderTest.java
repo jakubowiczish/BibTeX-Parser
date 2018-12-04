@@ -4,7 +4,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class BibBuilderTest {
-
     @Test
     public void testBuild() {
 
@@ -20,7 +19,7 @@ public class BibBuilderTest {
                 new BibPair("number", "7"),
                 new BibPair("pages", "73+"),
                 new BibPair("month", "jul"),
-                new BibPair("note","This is a full ARTICLE entry")
+                new BibPair("note", "This is a full ARTICLE entry")
         };
 
         BibObject realObject = new BibObject(name, quoteKey, bibPairs);
@@ -31,10 +30,8 @@ public class BibBuilderTest {
 
         BibBuilder builder = new BibBuilder(name, needed, optional);
 
-        BibObject expectedObject = builder.build(quoteKey, bibPairs);
+        BibObject expectedObject = builder.build(quoteKey, bibPairs, 0);
 
         assertEquals(expectedObject, realObject);
     }
-
-
 }
