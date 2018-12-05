@@ -36,6 +36,9 @@ public class BibBuilders {
                 new BibBuilder("PHDTHESIS", BibFieldNames.createArray("author, title, school, year"),
                         BibFieldNames.createArray("type, address, month, note, key, crossref")),
 
+                new BibBuilder("PROCEEDINGS", BibFieldNames.createArray("title, year"),
+                        BibFieldNames.createArray("editor, volume|number, series, address, month, publisher, organization, note, key, crossref")),
+
                 new BibBuilder("TECHREPORT", BibFieldNames.createArray("author, title, institution, year"),
                         BibFieldNames.createArray("editor, volume|number, series, address, month, organization, publisher, note, key, crossref")),
 

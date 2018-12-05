@@ -129,6 +129,10 @@ public class BibParser {
     private static String receiveFile(File inputFile) throws IOException {
         BufferedReader bufferedReader = null;
         try {
+            if(!inputFile.isFile()){
+                throw new FileNotFoundException("Nie znaleziono pliku o podanej nazwie, sprobuj ponownie");
+
+            }
             bufferedReader = new BufferedReader(new FileReader(inputFile));
 
             String line;
