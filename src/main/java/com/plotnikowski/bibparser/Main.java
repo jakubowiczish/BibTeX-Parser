@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 @Command(
         name = "BIBTEX PARSER",
-        mixinStandardHelpOptions = true,
         version = "BibTexParser version 1.0 \ncreated by Jakub Płotnikowski, 2018 \nAll rights reserved",
         header = "Presents filtered BibTex file",
         description = "Given BibTex file is parsed " +
