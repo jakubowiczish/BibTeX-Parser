@@ -27,7 +27,7 @@ public class Main implements Runnable {
 
 
     public static void main(String[] args) {
-//        args = new String[]{"--file=D:\\Studia\\GITHUB\\ObjectOrientedProgramming---Project-1\\test.bib", "--author=Lipcoll,Knuth"};
+        args = new String[]{"--file=D:\\Studia\\GITHUB\\ObjectOrientedProgramming---Project-1\\test.bib", "--name=BOOK"};
         CommandLine.run(new Main(), args);
     }
 

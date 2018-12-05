@@ -1,10 +1,7 @@
 package com.plotnikowski.bibparser;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Class used to parse bibtex file content into object representation
@@ -67,10 +64,14 @@ public class BibParser {
 
                     BibPair[] pairs = new BibPair[attributes.length - 1];
 
+                    String crossref = null;
+
                     for (int i = 0; i < pairs.length; i++) {
                         String[] pair = attributes[i + 1].split("=");
                         pair[1] = BibParser.handleVariables(pair[1], stringMap);
-
+                        if (pair[0].trim().equals("crossref")) {
+                            crossref = pair[1].trim();
+                        }
                         pairs[i] = new BibPair(pair[0].trim(), pair[1].trim());
                     }
 
@@ -78,7 +79,27 @@ public class BibParser {
                     for (BibBuilder bibBuilder : bibBuilders) {
                         if (bibBuilder.getName().equals(entry)) {
                             found = true;
-                            objects.add(bibBuilder.build(quoteName, pairs, returnLine(newLines, lastAtIndex)));
+                            if (crossref != null) {
+                                ArrayList<BibPair> tempPairs = new ArrayList<>(Arrays.asList(pairs));
+                                for (BibObject bibObject : objects) {
+                                    if (bibObject.getQuoteKey().equals(crossref)) {
+                                        for (BibPair pair : bibObject.getBibPairs()) {
+                                            boolean foundPair = false;
+                                            for (BibPair tempPair : tempPairs) {
+                                                if (tempPair.getField().equals(pair.getField()))
+                                                    foundPair = true;
+                                            }
+                                            if (!foundPair) {
+                                                tempPairs.add(pair);
+                                            }
+                                        }
+                                        break;
+                                    }
+                                }
+                                objects.add(bibBuilder.build(quoteName, tempPairs.toArray(new BibPair[0]), returnLine(newLines, lastAtIndex)));
+                            } else {
+                                objects.add(bibBuilder.build(quoteName, pairs, returnLine(newLines, lastAtIndex)));
+                            }
                             break;
                         }
                     }
