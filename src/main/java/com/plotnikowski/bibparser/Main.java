@@ -12,7 +12,8 @@ import java.util.ArrayList;
         version = "BibTexParser version 1.0 \ncreated by Jakub Płotnikowski, 2018 \nAll rights reserved",
         header = "Presents filtered BibTex file",
         description = "Given BibTex file is parsed " +
-                "and filtered"
+                "and filtered",
+        mixinStandardHelpOptions = true
 )
 public class Main implements Runnable {
 
